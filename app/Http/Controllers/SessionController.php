@@ -38,9 +38,9 @@ class SessionController extends Controller
 
             // Check if the user has a customer record
             if ($user->customer) {
-                $customer = $user->customer->id;
+                $customerId = $user->customer->id;
             
-                return redirect()->route('custpage', ['customer' => $customer]);
+                return redirect()->route('custpage', ['customerId' => $customerId]);
             }
            
              elseif ($user->deliveryMan) {
@@ -53,7 +53,8 @@ class SessionController extends Controller
                 return redirect()->route('dManpage', ['deliveryManId' => $deliveryManId]);
                 //view('landing.landDelivery');
                 
-            } else {
+            } elseif ($user->email === 'admin@gmail.com') {
+
                 return redirect('/dashboard/page');
             }
         }

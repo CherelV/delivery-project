@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +17,9 @@
             --pending:      #d97706;
             --pending-bg:   #fffbeb;
             --pending-bd:   #fde68a;
-            --delivered:    #059669;
-            --delivered-bg: #ecfdf5;
-            --delivered-bd: #a7f3d0;
+            --completed:    #059669;
+            --completed-bg: #ecfdf5;
+            --completed-bd: #a7f3d0;
             --canceled:     #dc2626;
             --canceled-bg:  #fef2f2;
             --canceled-bd:  #fecaca;
@@ -58,7 +57,7 @@
             color: var(--blue);
         }
 
-        .driver-badge {
+        .customer-badge {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -68,20 +67,21 @@
             border-radius: 30px;
         }
 
-        .driver-avatar {
+        .customer-avatar {
             width: 30px; height: 30px;
             border-radius: 50%;
             background: var(--blue);
             display: flex; align-items: center; justify-content: center;
             color: white; font-size: 12px; font-weight: 600;
+            text-transform: uppercase;
         }
 
-        .driver-name { font-size: 13px; font-weight: 500; color: var(--blue); }
+        .customer-name { font-size: 13px; font-weight: 500; color: var(--blue); }
 
         .online-dot {
             width: 7px; height: 7px;
             border-radius: 50%;
-            background: var(--delivered);
+            background: var(--completed);
         }
 
         /* PAGE */
@@ -106,6 +106,25 @@
         }
 
         .page-title p { color: var(--muted); font-size: 14px; margin-top: 4px; font-weight: 300; }
+
+        /* NEW DELIVERY BUTTON */
+        .new-delivery-btn {
+            display: inline-block;
+            background: var(--blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 24px;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .new-delivery-btn:hover {
+            background: var(--blue-dark);
+        }
 
         /* STATS */
         .stats {
@@ -135,13 +154,13 @@
         .stat-value { font-size: 28px; font-weight: 600; line-height: 1; }
         .stat-value.blue      { color: var(--blue); }
         .stat-value.amber     { color: var(--pending); }
-        .stat-value.green     { color: var(--delivered); }
+        .stat-value.green     { color: var(--completed); }
         .stat-value.red       { color: var(--canceled); }
 
         .stat-bar { height: 3px; border-radius: 2px; width: 32px; }
         .bar-blue  { background: var(--blue); }
         .bar-amber { background: var(--pending); }
-        .bar-green { background: var(--delivered); }
+        .bar-green { background: var(--completed); }
         .bar-red   { background: var(--canceled); }
 
         /* TOOLBAR */
@@ -185,9 +204,6 @@
 
         /* SECTION */
         .section { margin-bottom: 40px; animation: up 0.5s ease both; }
-        .section:nth-child(1) { animation-delay: 0.16s; }
-        .section:nth-child(2) { animation-delay: 0.24s; }
-        .section:nth-child(3) { animation-delay: 0.32s; }
 
         .section-head {
             display: flex; align-items: center;
@@ -201,7 +217,7 @@
 
         .status-line { width: 3px; height: 22px; border-radius: 2px; }
         .line-pending   { background: var(--pending); }
-        .line-delivered { background: var(--delivered); }
+        .line-completed { background: var(--completed); }
         .line-canceled  { background: var(--canceled); }
 
         .section-head h2 {
@@ -215,7 +231,7 @@
         }
 
         .cb-pending   { background: var(--pending-bg);  color: var(--pending);   border: 1px solid var(--pending-bd); }
-        .cb-delivered { background: var(--delivered-bg); color: var(--delivered); border: 1px solid var(--delivered-bd); }
+        .cb-completed { background: var(--completed-bg); color: var(--completed); border: 1px solid var(--completed-bd); }
         .cb-canceled  { background: var(--canceled-bg); color: var(--canceled);  border: 1px solid var(--canceled-bd); }
 
         .see-all {
@@ -251,7 +267,7 @@
         }
 
         .card-pending::before   { background: var(--pending); }
-        .card-delivered::before { background: var(--delivered); }
+        .card-completed::before { background: var(--completed); }
         .card-canceled::before  { background: var(--canceled); }
 
         .card-top {
@@ -270,7 +286,7 @@
         }
 
         .pill-pending   { background: var(--pending-bg);  color: var(--pending);   border: 1px solid var(--pending-bd); }
-        .pill-delivered { background: var(--delivered-bg); color: var(--delivered); border: 1px solid var(--delivered-bd); }
+        .pill-completed { background: var(--completed-bg); color: var(--completed); border: 1px solid var(--completed-bd); }
         .pill-canceled  { background: var(--canceled-bg); color: var(--canceled);  border: 1px solid var(--canceled-bd); }
 
         /* Route */
@@ -300,6 +316,45 @@
 
         .route-addr { font-size: 13px; color: var(--text); line-height: 1.3; }
 
+        /* Delivery Man info (for customer view) */
+        .delivery-man-info {
+            margin: 12px 0;
+            padding: 10px;
+            background: var(--blue-light);
+            border-radius: 8px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .delivery-man-avatar-small {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .delivery-man-details {
+            flex: 1;
+        }
+
+        .delivery-man-name-small {
+            font-weight: 600;
+            color: var(--blue-dark);
+        }
+
+        .delivery-man-contact {
+            font-size: 10px;
+            color: var(--muted);
+        }
+
         /* Card footer */
         .card-footer {
             display: flex; align-items: center;
@@ -315,33 +370,84 @@
         .amount { font-size: 15px; font-weight: 600; color: var(--blue); }
         .amount.struck { color: var(--muted); text-decoration: line-through; }
 
-        /* Actions */
-        .card-actions { display: flex; gap: 8px; margin-top: 12px; }
-
-        .btn-accept {
-            flex: 1; padding: 8px;
-            background: var(--blue); color: white;
-            border: none; border-radius: 7px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 13px; font-weight: 500;
-            cursor: pointer; transition: background 0.2s;
+        /* Action buttons */
+        .card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
         }
 
-        .btn-accept:hover { background: var(--blue-dark); }
-
-        .btn-decline {
-            flex: 1; padding: 8px;
-            background: transparent; color: var(--canceled);
-            border: 1px solid var(--canceled-bd); border-radius: 7px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 13px; font-weight: 500;
-            cursor: pointer; transition: background 0.2s;
+        .btn-track {
+            flex: 1;
+            padding: 8px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
         }
 
-        .btn-decline:hover { background: var(--canceled-bg); }
+        .btn-track:hover {
+            background: var(--blue-dark);
+        }
+
+        .btn-contact {
+            flex: 1;
+            padding: 8px;
+            background: transparent;
+            color: var(--blue);
+            border: 1px solid var(--blue-mid);
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn-contact:hover {
+            background: var(--blue-light);
+        }
+
+        .btn-reorder {
+            flex: 1;
+            padding: 8px;
+            background: var(--pending);
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn-reorder:hover {
+            background: #b45309;
+        }
 
         /* Divider */
         .divider { border: none; border-top: 1px dashed var(--border); margin: 8px 0 40px; }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--muted);
+            font-size: 14px;
+            background: var(--white);
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            grid-column: 1 / -1;
+        }
 
         /* Toast */
         .toast {
@@ -375,54 +481,63 @@
 
 <div class="header">
     <span class="brand">PopDelivery</span>
-    <div class="driver-badge">
+    <div class="customer-badge">
         <div class="online-dot"></div>
-        <div class="driver-avatar">MK</div>
-        <span class="driver-name">Mohamed K.</span>
+        <div class="customer-avatar">
+            {{ substr($customer->user->name ?? 'C', 0, 2) }}
+        </div>
+        <span class="customer-name">{{ $customer->user->name ?? 'Customer' }}</span>
     </div>
 </div>
 
 <div class="page">
 
     <div class="page-title">
-        <h1>CUSTOMER PAGE</h1>
-        {{-- <p>Friday, February 20, 2026 &middot; Yaoundé, Cameroon</p> --}}
+        <h1>My Deliveries</h1>
+        <p>Welcome back, {{ $customer->user->name ?? 'Customer' }}! • {{ now()->format('l, F j, Y') }}</p>
     </div>
 
+    <!-- New Delivery Button -->
+    {{-- <a href="{{ route('delivery-list.createDel', ['customerId' => $customer->id]) }}" class="new-delivery-btn">
+        + Request New Delivery
+    </a> --}}
+
+    <!-- STATS CARDS -->
     <div class="stats">
         <div class="stat">
-            <div class="stat-label">Total Today</div>
-            <div class="stat-value blue">12</div>
+            <div class="stat-label">Total</div>
+            <div class="stat-value blue">{{ $allDeliveries->count() }}</div>
             <div class="stat-bar bar-blue"></div>
         </div>
         <div class="stat">
             <div class="stat-label">Pending</div>
-            <div class="stat-value amber">4</div>
+            <div class="stat-value amber">{{ $pendingCount }}</div>
             <div class="stat-bar bar-amber"></div>
         </div>
         <div class="stat">
-            <div class="stat-label">Delivered</div>
-            <div class="stat-value green">6</div>
+            <div class="stat-label">completed</div>
+            <div class="stat-value green">{{ $completedCount }}</div>
             <div class="stat-bar bar-green"></div>
         </div>
         <div class="stat">
             <div class="stat-label">Canceled</div>
-            <div class="stat-value red">2</div>
+            <div class="stat-value red">{{ $canceledCount }}</div>
             <div class="stat-bar bar-red"></div>
         </div>
     </div>
 
+    <!-- TOOLBAR -->
     <div class="toolbar">
         <div class="search-wrap">
-            <input type="text" placeholder="Search by order, customer or address…" oninput="filterCards(this.value)">
+            <input type="text" id="searchInput" placeholder="Search by order ID or address…" onkeyup="filterCards(this.value)">
         </div>
         <button class="filter-btn active" onclick="filterStatus('all', this)">All</button>
         <button class="filter-btn" onclick="filterStatus('pending', this)">Pending</button>
-        <button class="filter-btn" onclick="filterStatus('delivered', this)">Delivered</button>
+        <button class="filter-btn" onclick="filterStatus('completed', this)">Completed</button>
         <button class="filter-btn" onclick="filterStatus('canceled', this)">Canceled</button>
     </div>
 
-    <!-- PENDING -->
+    <!-- PENDING SECTION -->
     <div class="section" id="section-pending">
         <div class="section-head">
             <div class="section-left">
@@ -430,17 +545,18 @@
                     <div class="status-line line-pending"></div>
                     <h2>Pending</h2>
                 </div>
-                <span class="count-badge cb-pending">4 active</span>
+                <span class="count-badge cb-pending">{{ $pendingCount }} active</span>
             </div>
-            <a href="#" class="see-all">See all</a>
         </div>
         <div class="cards" id="grid-pending">
-
-            <div class="card card-pending" data-status="pending" data-search="ord-2841 alice dupont lilas kennedy">
+            @forelse($allDeliveries->where('status', 'pending') as $delivery)
+            <div class="card card-pending" 
+                 data-status="pending" 
+                 data-search="ord-{{ $delivery->id }} {{ strtolower($delivery->departureAddress->name ?? '') }} {{ strtolower($delivery->destinationAddress->name ?? '') }}">
                 <div class="card-top">
                     <div>
-                        <div class="order-id">#ORD-2841</div>
-                        <div class="customer">Alice Dupont</div>
+                        <div class="order-id">#ORD-{{ $delivery->id }}</div>
+                        <div class="customer">Deliver to: {{ $delivery->destinationAddress->name ?? 'Unknown' }}</div>
                     </div>
                     <span class="pill pill-pending">Pending</span>
                 </div>
@@ -452,57 +568,81 @@
                     </div>
                     <div class="route-info">
                         <div>
-                            <div class="route-label">Pickup</div>
-                            <div class="route-addr">14 Rue des Lilas, Bastos</div>
+                            <div class="route-label">Pickup From</div>
+                            <div class="route-addr">{{ $delivery->departureAddress->name ?? 'Address not specified' }}</div>
                         </div>
                         <div>
-                            <div class="route-label">Drop-off</div>
-                            <div class="route-addr">3 Av. Kennedy, Yaoundé Centre</div>
+                            <div class="route-label">Deliver To</div>
+                            <div class="route-addr">{{ $delivery->destinationAddress->name ?? 'Address not specified' }}</div>
                         </div>
                     </div>
                 </div>
+
+                @if($delivery->deliveryMan)
+                <div class="delivery-man-info">
+                    <div class="delivery-man-avatar-small">
+                        {{ substr($delivery->deliveryMan->user->name ?? 'DM', 0, 2) }}
+                    </div>
+                    <div class="delivery-man-details">
+                        <div class="delivery-man-name-small">Delivery Partner: {{ $delivery->deliveryMan->user->name ?? 'Assigned' }}</div>
+                        <div class="delivery-man-contact">{{ $delivery->deliveryMan->user->phone ?? 'Contact info' }}</div>
+                    </div>
+                </div>
+                @else
+                <div class="delivery-man-info">
+                    <div class="delivery-man-details">
+                        <div class="delivery-man-name-small">Looking for a delivery partner...</div>
+                    </div>
+                </div>
+                @endif
+
                 <div class="card-footer">
                     <div class="meta">
-                        <span class="meta-item">3.2 km</span>
-                        <span class="meta-item">~18 min</span>
+                        <span class="meta-item">{{ $delivery->distance ?? '0' }} km</span>
+                        <span class="meta-item">{{ $delivery->created_at->diffForHumans() }}</span>
                     </div>
-                    <span class="amount">2 500 XAF</span>
+                    <span class="amount">{{ number_format($delivery->fee, 0, ',', ' ') }} XAF</span>
                 </div>
+
                 <div class="card-actions">
-                    <button class="btn-accept" onclick="accept(this,'#ORD-2841')">Accept</button>
-                    <button class="btn-decline" onclick="decline(this,'#ORD-2841')">Decline</button>
+                    <a href="#
+                    {{-- {{ route('customer.track.delivery', ['deliveryId' => $delivery->id]) }} --}}
+                     " class="btn-track">Track</a>
+                    <a href="
+                    {{-- {{ route('customer.contact.support', ['deliveryId' => $delivery->id]) }} --}}
+                     " class="btn-contact">Contact Support</a>
                 </div>
             </div>
-
-          
-
-
+            @empty
+            <div class="empty-state">No pending deliveries</div>
+            @endforelse
         </div>
     </div>
 
     <hr class="divider">
 
-    <!-- DELIVERED -->
-    <div class="section" id="section-delivered">
+    <!-- completed SECTION -->
+    <div class="section" id="section-completed">
         <div class="section-head">
             <div class="section-left">
                 <div class="section-label">
-                    <div class="status-line line-delivered"></div>
-                    <h2>Delivered</h2>
+                    <div class="status-line line-completed"></div>
+                    <h2>Completed</h2>
                 </div>
-                <span class="count-badge cb-delivered">6 completed</span>
+                <span class="count-badge cb-completed">{{ $completedCount }} completed</span>
             </div>
-            <a href="#" class="see-all">See all</a>
         </div>
-        <div class="cards" id="grid-delivered">
-
-            <div class="card card-delivered" data-status="delivered" data-search="ord-2835 marie mvog betsi">
+        <div class="cards" id="grid-completed">
+            @forelse($allDeliveries->where('status', 'completed') as $delivery)
+            <div class="card card-completed" 
+                 data-status="completed" 
+                 data-search="ord-{{ $delivery->id }} {{ strtolower($delivery->departureAddress->name ?? '') }} {{ strtolower($delivery->destinationAddress->name ?? '') }}">
                 <div class="card-top">
                     <div>
-                        <div class="order-id">#ORD-2835</div>
-                        <div class="customer">Marie Mvog Betsi</div>
+                        <div class="order-id">#ORD-{{ $delivery->id }}</div>
+                        <div class="customer">Delivered to: {{ $delivery->destinationAddress->name ?? 'Unknown' }}</div>
                     </div>
-                    <span class="pill pill-delivered">Delivered</span>
+                    <span class="pill pill-completed">Completed</span>
                 </div>
                 <div class="route">
                     <div class="route-dots">
@@ -512,32 +652,47 @@
                     </div>
                     <div class="route-info">
                         <div>
-                            <div class="route-label">Pickup</div>
-                            <div class="route-addr">Mvog-Betsi Market, Yaoundé</div>
+                            <div class="route-label">Pickup From</div>
+                            <div class="route-addr">{{ $delivery->departureAddress->name ?? 'Address not specified' }}</div>
                         </div>
                         <div>
-                            <div class="route-label">Drop-off</div>
-                            <div class="route-addr">Av. Mongo, Yaoundé 2</div>
+                            <div class="route-label">Delivered To</div>
+                            <div class="route-addr">{{ $delivery->destinationAddress->name ?? 'Address not specified' }}</div>
                         </div>
                     </div>
                 </div>
+
+                @if($delivery->deliveryMan)
+                <div class="delivery-man-info">
+                    <div class="delivery-man-avatar-small">
+                        {{ substr($delivery->deliveryMan->user->name ?? 'DM', 0, 2) }}
+                    </div>
+                    <div class="delivery-man-details">
+                        <div class="delivery-man-name-small">completed by: {{ $delivery->deliveryMan->user->name ?? 'Delivery Partner' }}</div>
+                        <div class="delivery-man-contact">{{ $delivery->deliveryMan->user->phone ?? 'Contact info' }}</div>
+                    </div>
+                </div>
+                @endif
+
                 <div class="card-footer">
                     <div class="meta">
-                        <span class="meta-item">2.8 km</span>
-                        {{-- <span class="meta-item">Done at 08:42</span> --}}
+                        <span class="meta-item">{{ $delivery->distance ?? '0' }} km</span>
+                        @if($delivery->delivered_on)
+                         {{-- <span class="meta-item">{{ $delivery->delivered_on->diffForHumans() }}</span> --}}
+                        @endif
                     </div>
-                    <span class="amount">2 200 XAF</span>
+                    <span class="amount">{{ number_format($delivery->fee, 0, ',', ' ') }} XAF</span>
                 </div>
             </div>
-
-           
-
+            @empty
+            <div class="empty-state">No completed deliveries</div>
+            @endforelse
         </div>
     </div>
 
     <hr class="divider">
 
-    <!-- CANCELED -->
+    <!-- CANCELED SECTION -->
     <div class="section" id="section-canceled">
         <div class="section-head">
             <div class="section-left">
@@ -545,17 +700,18 @@
                     <div class="status-line line-canceled"></div>
                     <h2>Canceled</h2>
                 </div>
-                <span class="count-badge cb-canceled">2 canceled</span>
+                <span class="count-badge cb-canceled">{{ $canceledCount }} canceled</span>
             </div>
-            <a href="#" class="see-all">See all</a>
         </div>
         <div class="cards" id="grid-canceled">
-
-            <div class="card card-canceled" data-status="canceled" data-search="ord-2833 ibrahim beti central biyem-assi">
+            @forelse($allDeliveries->where('status', 'canceled') as $delivery)
+            <div class="card card-canceled" 
+                 data-status="canceled" 
+                 data-search="ord-{{ $delivery->id }} {{ strtolower($delivery->departureAddress->name ?? '') }} {{ strtolower($delivery->destinationAddress->name ?? '') }}">
                 <div class="card-top">
                     <div>
-                        <div class="order-id">#ORD-2833</div>
-                        <div class="customer">Ibrahim Beti</div>
+                        <div class="order-id">#ORD-{{ $delivery->id }}</div>
+                        <div class="customer">Delivery to: {{ $delivery->destinationAddress->name ?? 'Unknown' }}</div>
                     </div>
                     <span class="pill pill-canceled">Canceled</span>
                 </div>
@@ -567,103 +723,77 @@
                     </div>
                     <div class="route-info">
                         <div>
-                            <div class="route-label">Pickup</div>
-                            <div class="route-addr">Marché Central, Yaoundé</div>
+                            <div class="route-label">Pickup From</div>
+                            <div class="route-addr">{{ $delivery->departureAddress->name ?? 'Address not specified' }}</div>
                         </div>
                         <div>
-                            <div class="route-label">Drop-off</div>
-                            <div class="route-addr">Quartier Biyem-Assi II</div>
+                            <div class="route-label">Delivery To</div>
+                            <div class="route-addr">{{ $delivery->destinationAddress->name ?? 'Address not specified' }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="meta">
-                        <span class="meta-item">5.0 km</span>
-                        <span class="meta-item cancel-reason">Client unavailable</span>
+                        <span class="meta-item">{{ $delivery->distance ?? '0' }} km</span>
+                        <span class="meta-item cancel-reason">Canceled</span>
                     </div>
-                    <span class="amount struck">3 500 XAF</span>
+                    <span class="amount struck">{{ number_format($delivery->fee, 0, ',', ' ') }} XAF</span>
+                </div>
+                <div class="card-actions">
+                    <a href="{{ route('customer.reorder', ['deliveryId' => $delivery->id]) }}" class="btn-reorder">Reorder</a>
                 </div>
             </div>
-
-            <a href="{{ route('landing.page.home') }}">Go to Home Page</a>
+            @empty
+            <div class="empty-state">No canceled deliveries</div>
+            @endforelse
         </div>
+    </div>
+
+    <!-- Home Link -->
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="{{ route('landing.page.home') }}" style="color: var(--blue); text-decoration: none;">← Back to Home</a>
     </div>
 
 </div>
 
 <div class="toast" id="toast"></div>
-{{-- @foreach ( $deliveries as $delivery )
-        <a href="/">
-            <tr>
-                <td> {{ $delivery['id'] }} </td>
-                <td>{{ $delivery->customer->user->name}}</td>
-                <td>{{ $delivery->deliveryMan->user->name }}</td>
-                <td id="{{ $delivery['status'] }}">{{ $delivery['status'] }}</td>
-                <td>{{ $delivery['fee'] }}</td>
-
-                @if (filled($delivery->departureAddress))
-                    <td>{{ $delivery->departureAddress->name }}</td>
-                @else
-                    <td> null</td>
-                @endif
-
-                @if (filled($delivery->destinationAddress))
-                    <td>{{ $delivery->destinationAddress->name }}</td>
-                @else
-                    <td> null</td>
-                @endif
-
-                <td>{{ $delivery['delivered_on'] }}</td>
-                <td> <a href="/delivery-list/{{$delivery->id}}"> show </a></td>
-                
-            </tr>
-        </a>
-        @endforeach --}}
 
 <script>
-    function toast(msg) {
-        const t = document.getElementById('toast');
-        t.textContent = msg;
-        t.classList.add('show');
-        setTimeout(() => t.classList.remove('show'), 3000);
-    }
-
-    function accept(btn, id) {
-        const card = btn.closest('.card');
-        card.style.transition = 'opacity 0.35s, transform 0.35s';
-        card.style.opacity = '0';
-        card.style.transform = 'scale(0.96)';
-        setTimeout(() => card.remove(), 350);
-        toast('Accepted ' + id);
-    }
-
-    function decline(btn, id) {
-        const card = btn.closest('.card');
-        card.style.transition = 'opacity 0.35s, transform 0.35s';
-        card.style.opacity = '0';
-        card.style.transform = 'scale(0.96)';
-        setTimeout(() => card.remove(), 350);
-        toast('Declined ' + id);
-    }
-
     function filterStatus(status, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        ['pending', 'delivered', 'canceled'].forEach(s => {
-            document.getElementById('section-' + s).style.display =
-                (status === 'all' || status === s) ? '' : 'none';
+        
+        ['pending', 'completed', 'canceled'].forEach(s => {
+            const section = document.getElementById('section-' + s);
+            if (section) {
+                section.style.display = (status === 'all' || status === s) ? '' : 'none';
+            }
         });
+        
         document.querySelectorAll('.divider').forEach(d => {
             d.style.display = status === 'all' ? '' : 'none';
         });
     }
 
     function filterCards(q) {
-        q = q.toLowerCase();
+        q = q.toLowerCase().trim();
         document.querySelectorAll('.card').forEach(c => {
-            c.style.display = (c.dataset.search || '').includes(q) || q === '' ? '' : 'none';
+            const searchText = c.dataset.search || '';
+            c.style.display = searchText.includes(q) || q === '' ? '' : 'none';
         });
     }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Initialize search
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        filterCards(this.value);
+    });
 </script>
 
 </body>

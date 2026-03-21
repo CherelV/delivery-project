@@ -7,7 +7,6 @@
     <title>Document</title>
 </head>
 <style>
-   
         body{
             font-family: 'Poppins', sans-serif;
             font-size:12px;
@@ -115,101 +114,75 @@
                 <p class="p1">Create Delivery </p>
                 <p class="p2"> Please enter the neccessary <br> information to create a Delivery</p> 
                 <p class="p3"></p>
-          
-    <form method="POST" action="/delivery-list/{{ $delivery->id }}" id="update-form">
-
+    @dump($errors)
+    <form method="POST" action="{{ route('delivery-list.storeDel') }}">
         @csrf
-        @method('PATCH')
-         @dump($errors)
         <div>
             <label>Customer Name</label><br>
-            <select name="customer_id" class="ch" required>
-                <option value="{{ $delivery->customer->id }}">{{ $delivery->customer->user->name}}</option>
-                @foreach ($customers as $customer)
-                    <option value="{{ $customer->id }}">{{ $customer->user->name }}</option>
-                @endforeach
-            </select>
+            <input type="hidden" name="customer_id" value="{{ $selectedCustomer->id }}">
+            <div class="customer-info">
+                <strong>{{ $selectedCustomer->user->name }}</strong>
+                <small>(ID: {{ $selectedCustomer->id }})</small>
+            </div>
         </div>
 
-        
         <div>
             <label>DeliveryMan Name</label><br>
-            <select name="delivery_man_id" class="ch" required>
-                <option value="{{ $delivery->deliveryMan->id }}">{{ $delivery->deliveryMan->user->name}}</option>
-                @foreach ($delivery_men as $deliveryMan)
-                    <option value="{{ $deliveryMan->id }}">{{ $deliveryMan->user->name }}</option>
-                @endforeach
-            </select>
+            <input type="hidden" name="delivery_man_id" value="{{ $selectedDeliveryMan->id }}">
+            <div class="deliveryman-info">
+                <strong>{{ $selectedDeliveryMan->user->name }}</strong>
+                 <small>{{ $selectedDeliveryMan->pending_count ?? 0 }} pending deliveries</small>
+            </div>
+
         </div>
         <div >
-         
 
         <label >Departure Address:</label><br>
         <select name="departure_address_id" class="ch" required>
-            <option value="{{ $delivery->departure_address_id }}">
-                @if (filled($delivery->departureAddress))
-                    <td>{{ $delivery->departureAddress->name }}</td>
-                @else
-                    <td> null</td>
-                @endif
-            </option>
-
+            <option value="">-- Choose Departure Address --</option>
             @foreach ($quarters as $quarter)
                 <option value="{{ $quarter->id }}">{{ $quarter->name }}</option>
             @endforeach
         </select>
-        @error('departure_address_id') <p class="text-red-500 text-xs italic">{{ $message }}</p> @enderror
+        @error('') <p class="text-red-500 text-xs italic">{{ $message }}</p> @enderror
     </div>
-   
+
+
+
     <div >
         <label >Destination Quarter:</label><br>
         <select name="destination_address_id" id="destination_quarter_id" class="ch" required>
-            <option value="{{ $delivery->destination_address_id }}">
-                @if (filled($delivery->destinationAddress))
-                    <td>{{ $delivery->destinationAddress->name }}</td>
-                @else
-                    <td> null</td>
-                @endif
-            </option>
+            <option value="">-- Choose Destination Quarter --</option>
             @foreach ($quarters as $quarter)
                 <option value="{{ $quarter->id }}">{{ $quarter->name }}</option>
             @endforeach
         </select>
-        @error('destination_address_id') <p class="text-red-500 text-xs italic">{{ $message }}</p> @enderror
+        @error('') <p class="text-red-500 text-xs italic">{{ $message }}</p> @enderror
     </div>
-    
-            <label>Item Description</label><br>
-            <input name="item_description" type="text" placeholder="Douala ancient depot" value="{{ $delivery->item_description}}"><br>
-            @error('item_description') <div>{{ $message }}</div> @enderror
-            <div >
+                    <label>Item Description</label><br>
+                    <input name="item_description" type="text" placeholder="Douala ancient depot"><br>
+                    @error('name') <div>{{ $message }}</div> @enderror
+                    <div >
         <label >Status</label><br>
         <select name="status" required>
-            <option value="pending" {{ $delivery->status == 'pending' ? 'selected' : '' }}>pending</option>
-            <option value="canceled" {{ $delivery->status == 'canceled' ? 'selected' : '' }}>canceled</option>
-            <option value="completed" {{ $delivery->status == 'completed' ? 'selected' : '' }}>completed</option>
+            <option value="">     </option>
+                <option value="pending">pending</option>
+                <option value="canceled">canceled</option>
+                <option value="completed">completed</option>
+           
         </select>
-        @error('status') <p class="text-red-500 text-xs italic">{{ $message }}</p> @enderror
+        @error('destination_quarter_id') <p class="text-red-500 text-xs italic">{{ $message }}</p> @enderror
     </div>
-    
                     <label>Fee </label><br>
-                    <input name="fee" type="text" placeholder="###########" value="{{ $delivery->fee}}"><br>
-                    @error('fee') <div>{{ $message }}</div> @enderror
+                    <input name="fee" type="text" placeholder="###########"><br>
+                    @error('name') <div>{{ $message }}</div> @enderror
 
                     <label>Delivered On</label><br>
-                    <input name="delivered_on" type="datetime-local" placeholder="###########" value="{{ $delivery->delivered_on}}"><br>
-                    @error('delivered_on') <div>{{ $message }}</div> @enderror
-                    
-                    <button form="update-form"> Update </button>
-                    <button form="delete-form">Delete</button>
+                    <input name="delivered_on" type="datetime-local" placeholder="###########"><br>
+                    @error('name') <div>{{ $message }}</div> @enderror
 
+                    <button type="submit"> Save Delivery </button>
                 </form>
-                <a href="/delivery-list/{{$delivery->id}}"><button>Cancel</button> </a>
-
-                 <form method="POST" action="/delivery-list/{{$delivery->id}}" id="delete-form"  >
-                    @csrf
-                    @method('DELETE')
-                </form>
-
     </div>
     <script>
         $(document).ready(function (){
@@ -219,4 +192,3 @@
 </body>
 
 </html>
-{{-- @dd($errors) --}}

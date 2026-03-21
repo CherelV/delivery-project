@@ -625,12 +625,12 @@
             </a>
            {{-- Delivery Man button --}}
 <a href="{{ Auth::guard('deliveryMan')->check() ? route('deliveryMan.myDeliveries') : route('customer.login')}}">
-    <button>My Deliveries</button>
+    <button class="button-left">My Deliveries</button>
 </a>
 
 {{-- Customer button --}}
 <a href="{{ Auth::guard('customer')->check() ? route('customer.schedule') : route('customer.login') }}">
-    <button>Schedule</button>
+    <button class="button-right">Schedule</button>
 </a>
 
 {{-- Logout forms --}}

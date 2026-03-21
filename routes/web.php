@@ -63,9 +63,13 @@ Route::get('/delivery-list/{delivery}/edit', [DeliveryController::class, 'edit']
 Route::patch('/delivery-list/{delivery}', [DeliveryController::class, 'update'])->name('delivery-list.update');
 Route::delete('/delivery-list/{delivery}', [DeliveryController::class, 'destroy'])->name('delivery-list.destroy');
 
-Route::get('/custpage/create2', [DeliveryController::class, 'index2'])->name('custpage');
 
-Route::get('/dManpage/create3', [DeliveryController::class, 'index3'])->name('dManpage');
+Route::get('/deliveryCus/{customerId}/create', [DeliveryController::class, 'createDelivery'])->name('delivery-list.createDel');
+Route::post('/deliveryCus', [DeliveryController::class, 'storeDelivery'])->name('delivery-list.storeDel');
+
+Route::get('/custpage/{customerId}/create2', [DeliveryController::class, 'index2'])->name('custpage');
+
+Route::get('/dManpage/{deliveryManId}/create3', [DeliveryController::class, 'index3'])->name('dManpage');
 
 
 Route::get('/register', [RegisterController::class, 'create'])->name('register.create');

@@ -39,7 +39,196 @@
         "town_id": "46",
         "town_name": "Bafoussam",
         "region_name": "Ouest",
-        "quarters": []
+        "quarters": [
+            {
+                "id": "625",
+                "name": "Ancien depot guiness"
+            },
+            {
+                "id": "636",
+                "name": "Bingo"
+            },
+            {
+                "id": "630",
+                "name": "Camoco(vers kami)"
+            },
+            {
+                "id": "627",
+                "name": "Carrefour le maire"
+            },
+            {
+                "id": "616",
+                "name": "Djeumou"
+            },
+            {
+                "id": "621",
+                "name": "Entre de la ville"
+            },
+            {
+                "id": "609",
+                "name": "Entr\u00e9e Ecole Normale"
+            },
+            {
+                "id": "635",
+                "name": "Eveche"
+            },
+            {
+                "id": "639",
+                "name": "Explosif"
+            },
+            {
+                "id": "624",
+                "name": "Famlah"
+            },
+            {
+                "id": "634",
+                "name": "Famleng"
+            },
+            {
+                "id": "612",
+                "name": "Feux Rouge Bafoussam"
+            },
+            {
+                "id": "633",
+                "name": "Force de dieu"
+            },
+            {
+                "id": "650",
+                "name": "Gare  routiere Koutaba"
+            },
+            {
+                "id": "654",
+                "name": "Gare routiere Bafang"
+            },
+            {
+                "id": "652",
+                "name": "Gare routiere Baham"
+            },
+            {
+                "id": "644",
+                "name": "Gare routiere Ballesssing"
+            },
+            {
+                "id": "647",
+                "name": "Gare routiere Bamenda"
+            },
+            {
+                "id": "638",
+                "name": "Gare routiere bamougoum"
+            },
+            {
+                "id": "641",
+                "name": "Gare routiere bamougoun"
+            },
+            {
+                "id": "655",
+                "name": "Gare routiere Bangangte"
+            },
+            {
+                "id": "653",
+                "name": "Gare routiere Batie"
+            },
+            {
+                "id": "656",
+                "name": "Gare routiere Batoufam"
+            },
+            {
+                "id": "642",
+                "name": "Gare routiere Dschang"
+            },
+            {
+                "id": "651",
+                "name": "Gare routiere Entree de la ville"
+            },
+            {
+                "id": "649",
+                "name": "Gare routiere Foumban"
+            },
+            {
+                "id": "648",
+                "name": "Gare routiere Foumbot"
+            },
+            {
+                "id": "643",
+                "name": "Gare routiere Mbouda"
+            },
+            {
+                "id": "646",
+                "name": "Gare routiere Michel"
+            },
+            {
+                "id": "645",
+                "name": "Gare routiere Penka"
+            },
+            {
+                "id": "631",
+                "name": "Kami toyota"
+            },
+            {
+                "id": "626",
+                "name": "Kamkop"
+            },
+            {
+                "id": "614",
+                "name": "Kankop"
+            },
+            {
+                "id": "640",
+                "name": "Lycee technique du canada"
+            },
+            {
+                "id": "628",
+                "name": "Maetur"
+            },
+            {
+                "id": "613",
+                "name": "Mairie Rurale"
+            },
+            {
+                "id": "615",
+                "name": "March\u00e9 A"
+            },
+            {
+                "id": "610",
+                "name": "March\u00e9 B"
+            },
+            {
+                "id": "617",
+                "name": "Marche bigmop"
+            },
+            {
+                "id": "619",
+                "name": "Pmuc"
+            },
+            {
+                "id": "611",
+                "name": "Salvia"
+            },
+            {
+                "id": "632",
+                "name": "St charle"
+            },
+            {
+                "id": "618",
+                "name": "Tamdja"
+            },
+            {
+                "id": "622",
+                "name": "Terminus"
+            },
+            {
+                "id": "637",
+                "name": "Toungang village et ces sous cartier"
+            },
+            {
+                "id": "623",
+                "name": "Toungang ville"
+            },
+            {
+                "id": "629",
+                "name": "Tpo"
+            }
+        ]
     },
     {
         "town_id": "48",
@@ -192,7 +381,7 @@
         "quarters": [
             {
                 "id": "447",
-                "name": "Aeroport international de Douala"
+                "name": "A\u00e9roport international de Douala"
             },
             {
                 "id": "370",
@@ -200,11 +389,11 @@
             },
             {
                 "id": "522",
-                "name": "Akwa - Salle des fetes - Lycee d'Akwa"
+                "name": "Akwa - Salle des f\u00eates - Lyc\u00e9e d'Akwa"
             },
             {
                 "id": "21",
-                "name": "Akwa 2 eglises"
+                "name": "Akwa 2 \u00e9glises"
             },
             {
                 "id": "18",
@@ -228,7 +417,7 @@
             },
             {
                 "id": "200",
-                "name": "Akwa Boulevard de la liberte"
+                "name": "Akwa Boulevard de la libert\u00e9"
             },
             {
                 "id": "201",
@@ -248,7 +437,7 @@
             },
             {
                 "id": "220",
-                "name": "Akwa college King Akwa"
+                "name": "Akwa coll\u00e8ge King Akwa"
             },
             {
                 "id": "209",
@@ -268,7 +457,7 @@
             },
             {
                 "id": "1",
-                "name": "Akwa Hotel le Nde"
+                "name": "Akwa Hotel le Nd\u00e9"
             },
             {
                 "id": "214",
@@ -324,7 +513,7 @@
             },
             {
                 "id": "227",
-                "name": "Akwa Vallee Besseugue"
+                "name": "Akwa Vall\u00e9e Besseugue"
             },
             {
                 "id": "35",
@@ -336,7 +525,7 @@
             },
             {
                 "id": "536",
-                "name": "Ange Raphael sic cacao"
+                "name": "Ange Rapha\u00ebl sic cacao"
             },
             {
                 "id": "2",
@@ -360,7 +549,7 @@
             },
             {
                 "id": "365",
-                "name": "Beedi - Marche"
+                "name": "Beedi - March\u00e9"
             },
             {
                 "id": "586",
@@ -372,35 +561,35 @@
             },
             {
                 "id": "457",
-                "name": "Bepanda Ambiance"
+                "name": "B\u00e9panda Ambiance"
             },
             {
                 "id": "460",
-                "name": "Bepanda Americain"
+                "name": "B\u00e9panda Am\u00e9ricain"
             },
             {
                 "id": "471",
-                "name": "Bepanda Camtel"
+                "name": "B\u00e9panda Camtel"
             },
             {
                 "id": "454",
-                "name": "Bepanda Casmando"
+                "name": "B\u00e9panda Casmando"
             },
             {
                 "id": "456",
-                "name": "Bepanda Double balle"
+                "name": "B\u00e9panda Double balle"
             },
             {
                 "id": "459",
-                "name": "Bepanda l'an 2000"
+                "name": "B\u00e9panda l'an 2000"
             },
             {
                 "id": "470",
-                "name": "Bepanda Ominsport"
+                "name": "B\u00e9panda Ominsport"
             },
             {
                 "id": "453",
-                "name": "Bepanda One to One"
+                "name": "B\u00e9panda One to One"
             },
             {
                 "id": "451",
@@ -408,15 +597,15 @@
             },
             {
                 "id": "458",
-                "name": "Bepanda Sans calecon"
+                "name": "B\u00e9panda Sans cale\u00e7on"
             },
             {
                 "id": "455",
-                "name": "Bepanda Tonnerre"
+                "name": "B\u00e9panda Tonnerre"
             },
             {
                 "id": "452",
-                "name": "Bepanda yong yong"
+                "name": "B\u00e9panda yong yong"
             },
             {
                 "id": "5",
@@ -432,11 +621,11 @@
             },
             {
                 "id": "533",
-                "name": "Bojongo apres le marche"
+                "name": "Bojongo apr\u00e8s le march\u00e9"
             },
             {
                 "id": "534",
-                "name": "Bojongo derriere le lycee"
+                "name": "Bojongo derriere le lyc\u00e9e"
             },
             {
                 "id": "245",
@@ -452,11 +641,11 @@
             },
             {
                 "id": "363",
-                "name": "Bonaberi - Bondjongo jusqu'au AGROCHEM"
+                "name": "Bonaberi - Bondjongo jusqu'\u00e0 AGROCHEM"
             },
             {
                 "id": "372",
-                "name": "Bonaberi - Garage Americain"
+                "name": "Bonaberi - Garage Am\u00e9ricain"
             },
             {
                 "id": "241",
@@ -472,7 +661,7 @@
             },
             {
                 "id": "76",
-                "name": "Bonaberi 4 etages"
+                "name": "Bonaberi 4 \u00e9tages"
             },
             {
                 "id": "85",
@@ -480,7 +669,7 @@
             },
             {
                 "id": "353",
-                "name": "Bonaberi Centre equestre - garage Americain"
+                "name": "Bonaberi Centre equestre - garage Am\u00e9ricain"
             },
             {
                 "id": "464",
@@ -492,7 +681,7 @@
             },
             {
                 "id": "423",
-                "name": "bonaberi grand baobab nouvelle rue en pave"
+                "name": "bonaberi grand baobab nouvelle rue en pav\u00e9"
             },
             {
                 "id": "582",
@@ -512,7 +701,7 @@
             },
             {
                 "id": "408",
-                "name": "bonaberi-chefferie"
+                "name": "bonaberi-cheff\u00e9rie"
             },
             {
                 "id": "521",
@@ -520,7 +709,7 @@
             },
             {
                 "id": "416",
-                "name": "bonaberi-derriere royal palace"
+                "name": "bonaberi-derri\u00e8re royal palace"
             },
             {
                 "id": "417",
@@ -528,19 +717,19 @@
             },
             {
                 "id": "415",
-                "name": "bonaberi-ecole primaire roseraie"
+                "name": "bonaberi-\u00e9cole primaire roseraie"
             },
             {
                 "id": "412",
-                "name": "bonaberi-ecole publique groupe 1"
+                "name": "bonaberi-\u00e9cole publique groupe 1"
             },
             {
                 "id": "413",
-                "name": "bonaberi-ecole publique groupe 2"
+                "name": "bonaberi-\u00e9cole publique groupe 2"
             },
             {
                 "id": "411",
-                "name": "bonaberi-eglise UEBC fin goudron"
+                "name": "bonaberi-\u00e9glise UEBC fin goudron"
             },
             {
                 "id": "414",
@@ -548,7 +737,7 @@
             },
             {
                 "id": "410",
-                "name": "bonaberi-grand baobab rue en paves"
+                "name": "bonaberi-grand baobab rue en pav\u00e9s"
             },
             {
                 "id": "419",
@@ -556,11 +745,11 @@
             },
             {
                 "id": "409",
-                "name": "bonaberi-petit marche"
+                "name": "bonaberi-petit march\u00e9"
             },
             {
                 "id": "406",
-                "name": "bonaberi-petit pont besse9ke"
+                "name": "bonaberi-petit pont bess\u00e9ke"
             },
             {
                 "id": "7",
@@ -588,7 +777,7 @@
             },
             {
                 "id": "570",
-                "name": "Bonamoussadi - Marche et environ"
+                "name": "Bonamoussadi - March\u00e9 et environ"
             },
             {
                 "id": "569",
@@ -612,7 +801,7 @@
             },
             {
                 "id": "526",
-                "name": "Bonanjo - Informatique douane - Region - Meridien"
+                "name": "Bonanjo - Informatique douane - R\u00e9gion - Meridien"
             },
             {
                 "id": "528",
@@ -624,7 +813,7 @@
             },
             {
                 "id": "525",
-                "name": "Bonanjo - Tresor - Rectte des finances - GUCE"
+                "name": "Bonanjo - Tr\u00e9sor - Rectte des finances - GUCE"
             },
             {
                 "id": "529",
@@ -648,11 +837,11 @@
             },
             {
                 "id": "240",
-                "name": "bonassama carrefour  du marche"
+                "name": "bonassama carrefour  du march\u00e9"
             },
             {
                 "id": "11",
-                "name": "Bonateki"
+                "name": "Bonat\u00e9ki"
             },
             {
                 "id": "198",
@@ -660,19 +849,19 @@
             },
             {
                 "id": "426",
-                "name": "bonedale- abattoire"
+                "name": "bonedal\u00e8- abattoire"
             },
             {
                 "id": "424",
-                "name": "bonedale- antenne orange"
+                "name": "bonedal\u00e8- antenne orange"
             },
             {
                 "id": "425",
-                "name": "bonedale- carrefour sergeo polo"
+                "name": "bonedal\u00e8- carrefour sergeo polo"
             },
             {
                 "id": "427",
-                "name": "bonedale- gendarmerie"
+                "name": "bonedal\u00e8- gendarmerie"
             },
             {
                 "id": "31",
@@ -708,31 +897,31 @@
             },
             {
                 "id": "36",
-                "name": "cite de la paix"
+                "name": "cit\u00e9 de la paix"
             },
             {
                 "id": "445",
-                "name": "Cite des Palmiers - Carrefour express"
+                "name": "Cit\u00e9 des Palmiers - Carrefour express"
             },
             {
                 "id": "443",
-                "name": "Cite des Palmiers - carrefour lycee"
+                "name": "Cit\u00e9 des Palmiers - carrefour lyc\u00e9e"
             },
             {
                 "id": "446",
-                "name": "Cite des Palmiers - Marche"
+                "name": "Cit\u00e9 des Palmiers - March\u00e9"
             },
             {
                 "id": "444",
-                "name": "Cite des Palmiers - Mosque"
+                "name": "Cit\u00e9 des Palmiers - Mosqu\u00e9"
             },
             {
                 "id": "345",
-                "name": "Cite des palmiers carrefour mosque"
+                "name": "Cit\u00e9 des palmiers carrefour mosqu\u00e9"
             },
             {
                 "id": "38",
-                "name": "Cite sic"
+                "name": "Cit\u00e9 sic"
             },
             {
                 "id": "57",
@@ -760,7 +949,7 @@
             },
             {
                 "id": "518",
-                "name": "Deido Marche Saker"
+                "name": "Deido March\u00e9 Saker"
             },
             {
                 "id": "233",
@@ -828,11 +1017,11 @@
             },
             {
                 "id": "53",
-                "name": "forrestiere"
+                "name": "forresti\u00e8re"
             },
             {
                 "id": "448",
-                "name": "Fret Aeroport de douala"
+                "name": "Fret A\u00e9roport de douala"
             },
             {
                 "id": "74",
@@ -860,7 +1049,7 @@
             },
             {
                 "id": "310",
-                "name": "japoma  carrefour lycee"
+                "name": "japoma  carrefour lyc\u00e9e"
             },
             {
                 "id": "583",
@@ -924,7 +1113,7 @@
             },
             {
                 "id": "601",
-                "name": "Leproserie de dibamba"
+                "name": "L\u00e9proserie de dibamba"
             },
             {
                 "id": "44",
@@ -940,11 +1129,11 @@
             },
             {
                 "id": "542",
-                "name": "Logbessou - Entree Chefferie"
+                "name": "Logbessou - Entr\u00e9e Chefferie"
             },
             {
                 "id": "541",
-                "name": "Logbessou - Entree Grenier"
+                "name": "Logbessou - Entr\u00e9e Grenier"
             },
             {
                 "id": "543",
@@ -952,19 +1141,19 @@
             },
             {
                 "id": "546",
-                "name": "logbessou - plateau- ecole Brikini"
+                "name": "logbessou - plateau- \u00e9cole Brikini"
             },
             {
                 "id": "545",
-                "name": "Logbessou - Temoin de Jehovah"
+                "name": "Logbessou - T\u00e9moin de J\u00e9hovah"
             },
             {
                 "id": "544",
-                "name": "Logbessou carrefour jusqu'ue Bao"
+                "name": "Logbessou carrefour jusqu'\u00e0 Bao"
             },
             {
                 "id": "540",
-                "name": "Logbessou- Derriere College SIMO - Quartier Dschang"
+                "name": "Logbessou- Derri\u00e8re College SIMO - Quartier Dschang"
             },
             {
                 "id": "433",
@@ -1024,7 +1213,7 @@
             },
             {
                 "id": "62",
-                "name": "Makepe _mosque"
+                "name": "Makepe _mosqu\u00e9"
             },
             {
                 "id": "72",
@@ -1032,11 +1221,11 @@
             },
             {
                 "id": "10",
-                "name": "Marche congo"
+                "name": "March\u00e9 congo"
             },
             {
                 "id": "594",
-                "name": "Marche Sandaga"
+                "name": "March\u00e9 Sandaga"
             },
             {
                 "id": "341",
@@ -1128,15 +1317,15 @@
             },
             {
                 "id": "395",
-                "name": "ndogpassi-1em dange"
+                "name": "ndogpassi-1em dang\u00e9"
             },
             {
                 "id": "403",
-                "name": "ndogpassi-1er entre borne 10"
+                "name": "ndogpassi-1er entr\u00e9 borne 10"
             },
             {
                 "id": "396",
-                "name": "ndogpassi-2em dange"
+                "name": "ndogpassi-2em dang\u00e9"
             },
             {
                 "id": "385",
@@ -1168,7 +1357,7 @@
             },
             {
                 "id": "397",
-                "name": "ndogpassi-cite de la paix"
+                "name": "ndogpassi-cit\u00e9 de la paix"
             },
             {
                 "id": "381",
@@ -1176,11 +1365,11 @@
             },
             {
                 "id": "401",
-                "name": "ndogpassi-entre ecole"
+                "name": "ndogpassi-entr\u00e9 \u00e9cole"
             },
             {
                 "id": "404",
-                "name": "ndogpassi-entree borne 10"
+                "name": "ndogpassi-entr\u00e9e borne 10"
             },
             {
                 "id": "377",
@@ -1192,7 +1381,7 @@
             },
             {
                 "id": "405",
-                "name": "ndogpassi-kogefer 1er entre"
+                "name": "ndogpassi-kogefer 1er entr\u00e9"
             },
             {
                 "id": "380",
@@ -1204,11 +1393,11 @@
             },
             {
                 "id": "393",
-                "name": "ndogpassi-marche gabonais"
+                "name": "ndogpassi-march\u00e9 gabonais"
             },
             {
                 "id": "394",
-                "name": "ndogpassi-mosque"
+                "name": "ndogpassi-mosqu\u00e9"
             },
             {
                 "id": "389",
@@ -1276,7 +1465,7 @@
             },
             {
                 "id": "92",
-                "name": "Ngodi bakoko lycee"
+                "name": "Ngodi bakoko lyc\u00e9e"
             },
             {
                 "id": "429",
@@ -1308,7 +1497,7 @@
             },
             {
                 "id": "79",
-                "name": "Nyalla Quartie Awoussa jusqu'au chateau"
+                "name": "Nyalla Quartie Awoussa jusqu'\u00e0 chateau"
             },
             {
                 "id": "30",
@@ -1316,7 +1505,7 @@
             },
             {
                 "id": "476",
-                "name": "PK 10 - Genie Militaire"
+                "name": "PK 10 - G\u00e9nie Militaire"
             },
             {
                 "id": "478",
@@ -1324,7 +1513,7 @@
             },
             {
                 "id": "477",
-                "name": "PK 10 Marche  PK12 entree lycee"
+                "name": "PK 10 March\u00e9 \u00e0 PK12 entr\u00e9e lyc\u00e9e"
             },
             {
                 "id": "558",
@@ -1348,7 +1537,7 @@
             },
             {
                 "id": "563",
-                "name": "PK 12 - Marche"
+                "name": "PK 12 - March\u00e9"
             },
             {
                 "id": "598",
@@ -1360,7 +1549,7 @@
             },
             {
                 "id": "559",
-                "name": "PK 12 - Quartier Bamoun - Lycee Ndoghem"
+                "name": "PK 12 - Quartier Bamoun - Lyc\u00e9e Ndoghem"
             },
             {
                 "id": "322",
@@ -1368,7 +1557,7 @@
             },
             {
                 "id": "592",
-                "name": "pk 12 lycee -vers cahette bar"
+                "name": "pk 12 lyc\u00e9e -vers cahette bar"
             },
             {
                 "id": "88",
@@ -1388,7 +1577,7 @@
             },
             {
                 "id": "84",
-                "name": "PK 15 PK 17"
+                "name": "PK 15 \u00e0 PK 17"
             },
             {
                 "id": "591",
@@ -1396,7 +1585,7 @@
             },
             {
                 "id": "93",
-                "name": "PK 18 PK19"
+                "name": "PK 18 \u00e0 PK19"
             },
             {
                 "id": "608",
@@ -1412,11 +1601,11 @@
             },
             {
                 "id": "480",
-                "name": "PK 8 - Entre la efc"
+                "name": "PK 8 - Entr\u00e9e la\u00efc"
             },
             {
                 "id": "531",
-                "name": "PK12 PK 14 dans le quartier"
+                "name": "PK12 \u00e0 PK 14 dans le quartier"
             },
             {
                 "id": "479",
@@ -1424,11 +1613,11 @@
             },
             {
                 "id": "482",
-                "name": "PK8 - Entre eglise catholique et l'interieur"
+                "name": "PK8 - Entr\u00e9e \u00e9glise catholique et l'interieur"
             },
             {
                 "id": "481",
-                "name": "PK8 - ESG - Renovation"
+                "name": "PK8 - ESG - R\u00e9novation"
             },
             {
                 "id": "475",
@@ -1492,7 +1681,7 @@
             },
             {
                 "id": "69",
-                "name": "Village QUIFFEROU - Entre bille"
+                "name": "Village QUIFFEROU - Entr\u00e9e bille"
             },
             {
                 "id": "90",
@@ -1504,7 +1693,7 @@
             },
             {
                 "id": "577",
-                "name": "Yassa plus de 1 km de la route"
+                "name": "Yassa \u00e0 plus de 1 km de la route"
             },
             {
                 "id": "80",
@@ -1561,7 +1750,7 @@
     },
     {
         "town_id": "27",
-        "town_name": "Edea",
+        "town_name": "Ed\u00e9a",
         "region_name": "Littoral",
         "quarters": []
     },
@@ -1621,14 +1810,14 @@
     },
     {
         "town_id": "22",
-        "town_name": "Kaelue",
-        "region_name": "Extreme-Nord",
+        "town_name": "Ka\u00e9l\u00e9",
+        "region_name": "Extr\u00eame-Nord",
         "quarters": []
     },
     {
         "town_id": "23",
         "town_name": "Kousseri",
-        "region_name": "Extreme-Nord",
+        "region_name": "Extr\u00eame-Nord",
         "quarters": []
     },
     {
@@ -1694,7 +1883,7 @@
     {
         "town_id": "19",
         "town_name": "Maroua",
-        "region_name": "Extreme-Nord",
+        "region_name": "Extr\u00eame-Nord",
         "quarters": []
     },
     {
@@ -1742,25 +1931,25 @@
     {
         "town_id": "72",
         "town_name": "Mindif",
-        "region_name": "Extreme-Nord",
+        "region_name": "Extr\u00eame-Nord",
         "quarters": []
     },
     {
         "town_id": "21",
         "town_name": "Mokolo",
-        "region_name": "Extreme-Nord",
+        "region_name": "Extr\u00eame-Nord",
         "quarters": []
     },
     {
         "town_id": "6",
-        "town_name": "Monatueue",
+        "town_name": "Monat\u00e9l\u00e9",
         "region_name": "Centre",
         "quarters": []
     },
     {
         "town_id": "24",
         "town_name": "Mora",
-        "region_name": "Extreme-Nord",
+        "region_name": "Extr\u00eame-Nord",
         "quarters": []
     },
     {
@@ -1784,7 +1973,7 @@
     {
         "town_id": "96",
         "town_name": "Ndjamena",
-        "region_name": "Extreme-Nord",
+        "region_name": "Extr\u00eame-Nord",
         "quarters": []
     },
     {
@@ -1795,7 +1984,7 @@
     },
     {
         "town_id": "3",
-        "town_name": "Ngaoundere",
+        "town_name": "Ngaound\u00e9r\u00e9",
         "region_name": "Adamaoua",
         "quarters": []
     },
@@ -1892,7 +2081,7 @@
     {
         "town_id": "71",
         "town_name": "Waza",
-        "region_name": "Extreme-Nord",
+        "region_name": "Extr\u00eame-Nord",
         "quarters": []
     },
     {
@@ -1910,14 +2099,903 @@
     {
         "town_id": "20",
         "town_name": "Yagoua",
-        "region_name": "Extreme-Nord",
+        "region_name": "Extr\u00eame-Nord",
         "quarters": []
     },
     {
         "town_id": "2",
-        "town_name": "Yaounde",
+        "town_name": "Yaound\u00e9",
         "region_name": "Centre",
-        "quarters": []
+        "quarters": [
+            {
+                "id": "327",
+                "name": "Acacia"
+            },
+            {
+                "id": "511",
+                "name": "Accopole - Mont\u00e9e Zo\u00e9"
+            },
+            {
+                "id": "571",
+                "name": "Ahala apr\u00e8s barri\u00e8re"
+            },
+            {
+                "id": "180",
+                "name": "Ahala Barriere - Tradex"
+            },
+            {
+                "id": "126",
+                "name": "Anguissa"
+            },
+            {
+                "id": "573",
+                "name": "Awae carrefour"
+            },
+            {
+                "id": "173",
+                "name": "Awae escalier"
+            },
+            {
+                "id": "572",
+                "name": "Awae Maison rouge"
+            },
+            {
+                "id": "565",
+                "name": "AYENE"
+            },
+            {
+                "id": "125",
+                "name": "Bastos"
+            },
+            {
+                "id": "176",
+                "name": "Biteng"
+            },
+            {
+                "id": "441",
+                "name": "Biyam Assi - Rond Point Express"
+            },
+            {
+                "id": "162",
+                "name": "Biyem assi"
+            },
+            {
+                "id": "326",
+                "name": "Biyem Assi - Superette"
+            },
+            {
+                "id": "129",
+                "name": "Bonass"
+            },
+            {
+                "id": "121",
+                "name": "Briquetterie"
+            },
+            {
+                "id": "263",
+                "name": "CABARET LA MEFOU\/ENTREE MAETURE"
+            },
+            {
+                "id": "302",
+                "name": "CAMP SIC MENDONG"
+            },
+            {
+                "id": "292",
+                "name": "CARREFOUR BANANE"
+            },
+            {
+                "id": "325",
+                "name": "Carrefour Golf"
+            },
+            {
+                "id": "359",
+                "name": "Carrefour Mecc"
+            },
+            {
+                "id": "600",
+                "name": "Carriere"
+            },
+            {
+                "id": "514",
+                "name": "Centre Administratif"
+            },
+            {
+                "id": "120",
+                "name": "Centre administratif"
+            },
+            {
+                "id": "515",
+                "name": "Centre Administratif - Education"
+            },
+            {
+                "id": "516",
+                "name": "Centre Adminstratif - Hopital Central"
+            },
+            {
+                "id": "517",
+                "name": "Centre Adminstratif - Hopital Central"
+            },
+            {
+                "id": "309",
+                "name": "CENTRE DES HANDICAPEES NKONDE"
+            },
+            {
+                "id": "289",
+                "name": "CHAPPELLE MANGUIER"
+            },
+            {
+                "id": "271",
+                "name": "CITE U"
+            },
+            {
+                "id": "130",
+                "name": "Cit\u00e9 Verte"
+            },
+            {
+                "id": "112",
+                "name": "Coron"
+            },
+            {
+                "id": "128",
+                "name": "Cradat"
+            },
+            {
+                "id": "315",
+                "name": "DAKAR EN BAS"
+            },
+            {
+                "id": "181",
+                "name": "Damas"
+            },
+            {
+                "id": "308",
+                "name": "DERRIERE CENTRE DES HANDICAPEES"
+            },
+            {
+                "id": "295",
+                "name": "DERRIERE LE CAMP"
+            },
+            {
+                "id": "287",
+                "name": "DERRIERE SANTA LUCIA NGOUSSO"
+            },
+            {
+                "id": "294",
+                "name": "DERRIERE ZIBI"
+            },
+            {
+                "id": "246",
+                "name": "Descente Eleveur"
+            },
+            {
+                "id": "277",
+                "name": "DISPENSAIRE MESSASSI"
+            },
+            {
+                "id": "116",
+                "name": "Djongolo"
+            },
+            {
+                "id": "103",
+                "name": "Djongolo Centre administratif"
+            },
+            {
+                "id": "124",
+                "name": "Dragage"
+            },
+            {
+                "id": "122",
+                "name": "Ecole de police"
+            },
+            {
+                "id": "143",
+                "name": "Efoulan"
+            },
+            {
+                "id": "172",
+                "name": "Eki\u00e9"
+            },
+            {
+                "id": "171",
+                "name": "Ekoumdoum"
+            },
+            {
+                "id": "158",
+                "name": "Ekounou"
+            },
+            {
+                "id": "190",
+                "name": "EKOUNOU 2 CHEVEAUX"
+            },
+            {
+                "id": "299",
+                "name": "EKOUNOU IMPOT"
+            },
+            {
+                "id": "375",
+                "name": "Eleveur - station tradex"
+            },
+            {
+                "id": "123",
+                "name": "ELEVEUR DERRIERE TRADEX"
+            },
+            {
+                "id": "117",
+                "name": "Elig Edzoa"
+            },
+            {
+                "id": "547",
+                "name": "Elig Effa"
+            },
+            {
+                "id": "108",
+                "name": "Elig Essono"
+            },
+            {
+                "id": "450",
+                "name": "Eloudem"
+            },
+            {
+                "id": "149",
+                "name": "Emana"
+            },
+            {
+                "id": "555",
+                "name": "Emana CNPS"
+            },
+            {
+                "id": "350",
+                "name": "Emia"
+            },
+            {
+                "id": "156",
+                "name": "Emombo"
+            },
+            {
+                "id": "138",
+                "name": "ENTREE MINISTRE ELEVEUR"
+            },
+            {
+                "id": "298",
+                "name": "Entree Simbock"
+            },
+            {
+                "id": "155",
+                "name": "Essomba"
+            },
+            {
+                "id": "133",
+                "name": "Essos"
+            },
+            {
+                "id": "115",
+                "name": "Etoa Meki"
+            },
+            {
+                "id": "184",
+                "name": "Etokos"
+            },
+            {
+                "id": "275",
+                "name": "ETOKOSS\/MBALGONG"
+            },
+            {
+                "id": "139",
+                "name": "Etoudi"
+            },
+            {
+                "id": "304",
+                "name": "ETOUG-EBE"
+            },
+            {
+                "id": "303",
+                "name": "ETOUG-EBE CENTRE DES HANDICAPEES"
+            },
+            {
+                "id": "174",
+                "name": "Ewankan"
+            },
+            {
+                "id": "338",
+                "name": "Febe Village"
+            },
+            {
+                "id": "305",
+                "name": "FOUGEROL CHATEAU"
+            },
+            {
+                "id": "307",
+                "name": "FOUGEROL CIMETIERE"
+            },
+            {
+                "id": "306",
+                "name": "FOUGEROL PETIT MARCHE"
+            },
+            {
+                "id": "170",
+                "name": "Happy"
+            },
+            {
+                "id": "283",
+                "name": "HOPITAL GENERAL YAOUNDE"
+            },
+            {
+                "id": "505",
+                "name": "Hotel de ville"
+            },
+            {
+                "id": "279",
+                "name": "HOTEL MANGUIER"
+            },
+            {
+                "id": "506",
+                "name": "Hyppodrome - Avenue des banques"
+            },
+            {
+                "id": "507",
+                "name": "Immeuble T BELLA - MINCOM"
+            },
+            {
+                "id": "509",
+                "name": "Intendence - Immeuble JACO"
+            },
+            {
+                "id": "340",
+                "name": "Jouvance"
+            },
+            {
+                "id": "513",
+                "name": "Kalafatas - S H O Equipement - MTN"
+            },
+            {
+                "id": "157",
+                "name": "Kondengui"
+            },
+            {
+                "id": "131",
+                "name": "Madagascar"
+            },
+            {
+                "id": "187",
+                "name": "Manassa"
+            },
+            {
+                "id": "151",
+                "name": "Manguier"
+            },
+            {
+                "id": "276",
+                "name": "MANGUIER CARREFOUR BEIGNET"
+            },
+            {
+                "id": "288",
+                "name": "MANGUIER CARREFOUR SORCIER"
+            },
+            {
+                "id": "99",
+                "name": "March\u00e9 central"
+            },
+            {
+                "id": "113",
+                "name": "March\u00e9 Mfoundi"
+            },
+            {
+                "id": "118",
+                "name": "Mballa 2"
+            },
+            {
+                "id": "290",
+                "name": "MBALLA IV"
+            },
+            {
+                "id": "291",
+                "name": "MBALLA V"
+            },
+            {
+                "id": "337",
+                "name": "Mbankolo"
+            },
+            {
+                "id": "192",
+                "name": "Mbankomo"
+            },
+            {
+                "id": "141",
+                "name": "Melen"
+            },
+            {
+                "id": "102",
+                "name": "Mendong"
+            },
+            {
+                "id": "293",
+                "name": "MENDONG MARCHE"
+            },
+            {
+                "id": "313",
+                "name": "MENDONG\/GRANDE BARRIERE NKOLZIE"
+            },
+            {
+                "id": "169",
+                "name": "Messamendongo"
+            },
+            {
+                "id": "165",
+                "name": "Messassi"
+            },
+            {
+                "id": "556",
+                "name": "Messassi - Ngonlo"
+            },
+            {
+                "id": "273",
+                "name": "MESSASSI NKOLNDOUM"
+            },
+            {
+                "id": "564",
+                "name": "MEYO"
+            },
+            {
+                "id": "195",
+                "name": "Mfou"
+            },
+            {
+                "id": "552",
+                "name": "Mimboman - dernier Poteau"
+            },
+            {
+                "id": "551",
+                "name": "Mimboman - Dispensaire"
+            },
+            {
+                "id": "553",
+                "name": "Mimboman - Maetur"
+            },
+            {
+                "id": "549",
+                "name": "Mimboman - OPEP"
+            },
+            {
+                "id": "550",
+                "name": "Mimboman - Premi\u00e8re Chappelle"
+            },
+            {
+                "id": "580",
+                "name": "Mimboman Charit\u00e9 - Feicom"
+            },
+            {
+                "id": "581",
+                "name": "Mimboman deuxieme chapelle"
+            },
+            {
+                "id": "317",
+                "name": "MIMBOMAN ECOLE"
+            },
+            {
+                "id": "554",
+                "name": "Mimboman Mvog enyegue"
+            },
+            {
+                "id": "177",
+                "name": "Mimboman Terminus"
+            },
+            {
+                "id": "119",
+                "name": "Mokolo"
+            },
+            {
+                "id": "148",
+                "name": "Mont F\u00e9b\u00e9"
+            },
+            {
+                "id": "508",
+                "name": "Mont\u00e9e Anne Rouge"
+            },
+            {
+                "id": "280",
+                "name": "MONTEE MANGUIER"
+            },
+            {
+                "id": "188",
+                "name": "Monti"
+            },
+            {
+                "id": "144",
+                "name": "Mvan"
+            },
+            {
+                "id": "323",
+                "name": "Mvog Ada"
+            },
+            {
+                "id": "161",
+                "name": "Mvog beti"
+            },
+            {
+                "id": "110",
+                "name": "Mvog Mbi"
+            },
+            {
+                "id": "135",
+                "name": "Mvolyie"
+            },
+            {
+                "id": "153",
+                "name": "Nfandena"
+            },
+            {
+                "id": "334",
+                "name": "Ngoa \u00e9k\u00e9l\u00e9 - carrefour EMIA"
+            },
+            {
+                "id": "335",
+                "name": "Ngoa \u00e9k\u00e9l\u00e9 - INJS"
+            },
+            {
+                "id": "336",
+                "name": "Ngoa \u00e9k\u00e9l\u00e9 UY1"
+            },
+            {
+                "id": "154",
+                "name": "Ngousso"
+            },
+            {
+                "id": "588",
+                "name": "NGOUSSO - chez les soeurs"
+            },
+            {
+                "id": "254",
+                "name": "NGOUSSO CHAPELLE"
+            },
+            {
+                "id": "284",
+                "name": "NGOUSSO FABRIQUE"
+            },
+            {
+                "id": "253",
+                "name": "NGOUSSO HOTEL LE PARADIS"
+            },
+            {
+                "id": "255",
+                "name": "NGOUSSO MOSQUEE"
+            },
+            {
+                "id": "282",
+                "name": "NGOUSSO RAIL"
+            },
+            {
+                "id": "189",
+                "name": "Nkoabang"
+            },
+            {
+                "id": "272",
+                "name": "NKOABANG LADA MARRE D'EAU\/ESSOK"
+            },
+            {
+                "id": "367",
+                "name": "Nkoametou"
+            },
+            {
+                "id": "104",
+                "name": "Nkol \u00e9ton"
+            },
+            {
+                "id": "197",
+                "name": "Nkolafamba"
+            },
+            {
+                "id": "440",
+                "name": "Nkolbison - Leboudi"
+            },
+            {
+                "id": "183",
+                "name": "Nkolbisson"
+            },
+            {
+                "id": "268",
+                "name": "NKOLBISSON AYENE"
+            },
+            {
+                "id": "269",
+                "name": "NKOLBISSON BEATTITUDE"
+            },
+            {
+                "id": "270",
+                "name": "NKOLBISSON DAGOBERT"
+            },
+            {
+                "id": "264",
+                "name": "NKOLFOULOU"
+            },
+            {
+                "id": "498",
+                "name": "Nkolmesseng -  Coll\u00e8ge Golden"
+            },
+            {
+                "id": "494",
+                "name": "Nkolmesseng - Apr\u00e8s le chef"
+            },
+            {
+                "id": "497",
+                "name": "Nkolmesseng - Carrefour Otou"
+            },
+            {
+                "id": "495",
+                "name": "Nkolmesseng - Chez le banquier"
+            },
+            {
+                "id": "496",
+                "name": "Nkolmesseng - Mombelingal"
+            },
+            {
+                "id": "492",
+                "name": "Nkolmesseng-Carrefour beignet"
+            },
+            {
+                "id": "491",
+                "name": "Nkolmesseng-Elecam"
+            },
+            {
+                "id": "493",
+                "name": "Nkolmesseng-Safari"
+            },
+            {
+                "id": "490",
+                "name": "Nkolmesseng-Tamtam"
+            },
+            {
+                "id": "262",
+                "name": "NKOLNDA"
+            },
+            {
+                "id": "318",
+                "name": "nkolndongo"
+            },
+            {
+                "id": "360",
+                "name": "Nkomkana"
+            },
+            {
+                "id": "159",
+                "name": "Nkomo"
+            },
+            {
+                "id": "319",
+                "name": "Nkomo Okui"
+            },
+            {
+                "id": "297",
+                "name": "NKOMO TOTAL"
+            },
+            {
+                "id": "178",
+                "name": "Nkozoa"
+            },
+            {
+                "id": "105",
+                "name": "Nlongkak"
+            },
+            {
+                "id": "186",
+                "name": "Nnomayos controle mixte"
+            },
+            {
+                "id": "316",
+                "name": "NSAM ESCALE"
+            },
+            {
+                "id": "312",
+                "name": "NSAM\/OBOBOGO"
+            },
+            {
+                "id": "314",
+                "name": "NSAM\/SOFAVIN"
+            },
+            {
+                "id": "194",
+                "name": "Nsimalen"
+            },
+            {
+                "id": "160",
+                "name": "Nsimeyong"
+            },
+            {
+                "id": "285",
+                "name": "NTEM ASSI"
+            },
+            {
+                "id": "179",
+                "name": "Nyom I"
+            },
+            {
+                "id": "191",
+                "name": "Nyom II"
+            },
+            {
+                "id": "146",
+                "name": "Obili"
+            },
+            {
+                "id": "163",
+                "name": "Obobogo"
+            },
+            {
+                "id": "368",
+                "name": "Odza - Borne 10"
+            },
+            {
+                "id": "374",
+                "name": "Odza - Borne 12"
+            },
+            {
+                "id": "373",
+                "name": "Odza - Terminus"
+            },
+            {
+                "id": "257",
+                "name": "ODZA AUBERGE BLEU"
+            },
+            {
+                "id": "267",
+                "name": "ODZA CITE DE LA PAIX"
+            },
+            {
+                "id": "258",
+                "name": "ODZA ENTREE COETTE"
+            },
+            {
+                "id": "278",
+                "name": "ODZA MBOG-ABANG"
+            },
+            {
+                "id": "259",
+                "name": "ODZA MONTEE ADVENTISTE"
+            },
+            {
+                "id": "274",
+                "name": "ODZA MVOG MANZE"
+            },
+            {
+                "id": "256",
+                "name": "ODZA PETIT MARCHE"
+            },
+            {
+                "id": "261",
+                "name": "ODZA PLAQUE LNB"
+            },
+            {
+                "id": "266",
+                "name": "ODZA TOTAL MAGZI"
+            },
+            {
+                "id": "166",
+                "name": "Okolo"
+            },
+            {
+                "id": "300",
+                "name": "OLEMBE BOULANGERIE DU PEUPLE"
+            },
+            {
+                "id": "167",
+                "name": "Olembe COEUR OUVERT"
+            },
+            {
+                "id": "499",
+                "name": "Olembe Stade"
+            },
+            {
+                "id": "136",
+                "name": "Olezoa"
+            },
+            {
+                "id": "152",
+                "name": "Omnisport"
+            },
+            {
+                "id": "358",
+                "name": "Oyomambang"
+            },
+            {
+                "id": "101",
+                "name": "Poste centrale"
+            },
+            {
+                "id": "510",
+                "name": "Poste centrale - Avenue Kennedy"
+            },
+            {
+                "id": "132",
+                "name": "Quartier Fouda"
+            },
+            {
+                "id": "140",
+                "name": "Quartier Golf"
+            },
+            {
+                "id": "265",
+                "name": "ROND POINT NSIMALEN"
+            },
+            {
+                "id": "504",
+                "name": "Rue CEPER"
+            },
+            {
+                "id": "150",
+                "name": "Santa Barbara"
+            },
+            {
+                "id": "185",
+                "name": "Simbock"
+            },
+            {
+                "id": "193",
+                "name": "Soa"
+            },
+            {
+                "id": "175",
+                "name": "Sous manguer"
+            },
+            {
+                "id": "134",
+                "name": "Titi Garage"
+            },
+            {
+                "id": "339",
+                "name": "TKC"
+            },
+            {
+                "id": "127",
+                "name": "Tongolo"
+            },
+            {
+                "id": "296",
+                "name": "TOTAL BITENG"
+            },
+            {
+                "id": "286",
+                "name": "TOTAL NGOUSSO"
+            },
+            {
+                "id": "147",
+                "name": "TROPICANA"
+            },
+            {
+                "id": "500",
+                "name": "Tsinga Camp SIC"
+            },
+            {
+                "id": "502",
+                "name": "Tsinga Carrefour"
+            },
+            {
+                "id": "503",
+                "name": "Tsinga Chapelle du Lac"
+            },
+            {
+                "id": "501",
+                "name": "Tsinga FECAFOOT"
+            },
+            {
+                "id": "548",
+                "name": "Tsinga Mont\u00e9e Aurore"
+            },
+            {
+                "id": "324",
+                "name": "Tsinga Village"
+            },
+            {
+                "id": "145",
+                "name": "Vogt"
+            },
+            {
+                "id": "512",
+                "name": "Voirie - Ol\u00e9zoa"
+            },
+            {
+                "id": "100",
+                "name": "Warda palais des sports"
+            }
+        ]
     },
     {
         "town_id": "17",
