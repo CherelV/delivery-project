@@ -25,8 +25,15 @@ class DeliveryController extends Controller
          $customers = Customer::all();
          $delivery_men = DeliveryMan::all();
          $quarters= Quarter::all();
+         
+         $selectedDeliveryMan = DeliveryMan::with('user')
+        ->withCount(['deliveries as pending_count' => function($query) {
+            $query->where('status', 'pending');
+        }])
+        ->orderBy('pending_count', 'asc')
+        ->first();
 
-    return view('delivery.create', compact('customers', 'delivery_men','quarters'));
+    return view('delivery.create', compact('customers', 'delivery_men','quarters','selectedDeliveryMan'));
 
    }
    public function store(Request $request)
@@ -42,7 +49,13 @@ class DeliveryController extends Controller
         'delivered_on'=>['required'],
       ]); 
     
-        Delivery::create($attributes);
+       $delivery = Delivery::create($attributes);
+          // Store a simple flag in cache for this deliveryman
+    cache()->put('new_delivery_for_' . $delivery->delivery_man_id, [
+        'message' => 'You have a new delivery!',
+        'delivery_id' => $delivery->id,
+    ], now()->addMinutes(10)); // stays for 2 minutes
+
     
    return redirect('/dashboard/delivery-list');
     }
@@ -73,7 +86,7 @@ class DeliveryController extends Controller
         'item_description'=>['required'],
         'delivered_on'=>['required'],
         ]);
-        dd($request->all());
+        
         $delivery->update([
             'customer_id'=>$attributes['customer_id'],
             'delivery_man_id'=>$attributes['delivery_man_id'],
@@ -83,7 +96,14 @@ class DeliveryController extends Controller
             'status'=>$attributes['status'],
             'item_description'=>$attributes['item_description'],
             'delivered_on'=>$attributes['delivered_on'],
+            
         ]);
+         // Notify the deliveryman that his delivery has been updated
+    cache()->put('new_delivery_for_' . $delivery->delivery_man_id, [
+        'message' => 'Your delivery has been updated!',
+        'delivery_id' => $delivery->id,
+    ], now()->addMinutes(10));
+        //dd($request->all());
          return redirect('/dashboard/delivery-list');
         //return view('dashboard.deliveryList');
     }
@@ -224,5 +244,25 @@ class DeliveryController extends Controller
     
    return redirect()->route('custpage', ['customerId' => $request->customer_id])
         ->with('success', 'Delivery created successfully!');
+    }
+
+    public function upgrade(Request $request, Delivery $delivery)
+    {
+         $customer = Auth::user()->customer; // adjust to your auth logic
+            if ($delivery->customer_id !== $customer->id) {
+                abort(403, 'Unauthorized action.');
+            }
+        if ($delivery->status !== 'pending') {
+            return back()->with('error', 'Only pending deliveries can be marked as completed.');
+        }
+
+        $delivery->update([
+                'status'       => 'completed',
+                'delivered_on' => now(),          // or $request->input('delivered_on') if you want a date picker
+        ]);
+        //dd($request->all());
+         return redirect()->route('custpage', ['customerId' => $delivery->customer_id])
+                                ->with('success', 'Delivery marked as completed!');
+        //return view('dashboard.deliveryList');
     }
 }

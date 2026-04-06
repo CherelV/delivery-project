@@ -524,18 +524,19 @@
         <div>
             <!-- Brand -->
             <div class="brand">
-                <div class="brand-icon"><i class="fas fa-bolt"></i></div>
+                {{-- <div class="brand-icon"><i class="fas fa-bolt"></i></div> --}}
                 <span class="brand-name">PopDelivery</span>
             </div>
-
+            @dump($errors);
             <!-- Header -->
             <div class="form-header">
                 <p class="subtitle">Welcome back</p>
                 <h1>Sign Up to PopDelivery</h1>
             </div>
 
-            <!-- Form -->
-           <form form method="POST" action="{{ route('register.store') }}">
+            <!-- Form --> 
+                    
+           <form form method="POST" action="{{ route('delivery-man.store') }}">
                 @csrf
 
                 <!-- Username -->
@@ -572,7 +573,7 @@
                     <label for="address">address</label>
                     <span class="field-icon"><i class="far fa-user"></i></span>
                 </div>
-                @error('name')
+                @error('address')
                     <p class="error">{{ $message }}</p>
                 @enderror
 
@@ -583,19 +584,51 @@
                     <span class="field-icon" onclick="togglePwd()"><i class="far fa-eye" id="eye-icon"></i></span>
                 </div>
                 
+
                 <div class="field">
-                    <input name="password_confirmation" type="text" placeholder=" " id="password_confirmation">
-                    <label for="password_confirmation">Confirm Password</label>
+                    <input name="national_id" type="text" placeholder=" " id="national_id">
+                    <label for="national_id">National ID</label>
                     <span class="field-icon"><i class="far fa-user"></i></span>
                 </div>
-                @error('name')
+                @error('national_id')
                     <p class="error">{{ $message }}</p>
                 @enderror
 
+                <div class="field">
+                    <input name="license_number" type="text" placeholder=" " id="license_number">
+                    <label for="license_number">License Number</label>
+                    <span class="field-icon"><i class="far fa-user"></i></span>
+                </div>
+                @error('license_number')
+                    <p class="error">{{ $message }}</p>
+                @enderror
 
-                
-
+                <div class="field">
+                    <input name="license_class" type="text" placeholder=" " id="license_class">
+                    <label for="license_class">License Class</label>
+                    <span class="field-icon"><i class="far fa-user"></i></span>
+                </div>
+                @error('license_class')
+                    <p class="error">{{ $message }}</p>
+                @enderror
               
+                 <div class="field">
+                    <input name="vehicle_type" type="text" placeholder=" " id="vehicle_type">
+                    <label for="vehicle_type">Vehicle Type</label>
+                    <span class="field-icon"><i class="far fa-user"></i></span>
+                </div>
+                @error('vehicle_type')
+                    <p class="error">{{ $message }}</p>
+                @enderror
+
+                <div class="field">
+                    <input name="number_plate" type="text" placeholder=" " id="number_plate">
+                    <label for="number_plate">Plate Number</label>
+                    <span class="field-icon"><i class="far fa-user"></i></span>
+                </div>
+                @error('number_plate')
+                    <p class="error">{{ $message }}</p>
+                @enderror
 
                 <!-- Extras -->
                 <div class="extras">
@@ -610,7 +643,7 @@
                     {{-- <a href="#" class="forgot">Forgot password?</a> --}}
                 </div>
 
-                <button type="submit" class="btn-submit">Sign Up</button>
+                <button type="submit" class="btn-submit">Save DeliveryMan </button>
             </form>
 
             <!-- Divider -->

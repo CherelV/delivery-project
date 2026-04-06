@@ -341,6 +341,36 @@
         @media screen and (max-width: 380px) {
             .stats { grid-template-columns: 1fr; }
         }
+            .toast-popup {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #1e1e2f;
+        color: white;
+        padding: 16px 22px;
+        border-radius: 14px;
+        border-left: 5px solid #4caf50;
+        font-family: sans-serif;
+        font-size: 15px;
+        z-index: 9999;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        animation: slideIn 0.4s ease;
+        max-width: 300px;
+    }
+    .toast-popup h4 {
+        margin: 0 0 6px;
+        font-size: 16px;
+    }
+    .toast-popup p {
+        margin: 0;
+        font-size: 13px;
+        opacity: 0.85;
+    }
+    @keyframes slideIn {
+        from { transform: translateX(120%); opacity: 0; }
+        to   { transform: translateX(0);    opacity: 1; }
+    }
     </style>
 </head>
 <body>
@@ -416,8 +446,9 @@
                  data-search="ord-{{ $delivery->id }} {{ strtolower($delivery->customer->user->name ?? '') }} {{ strtolower($delivery->departureAddress->name ?? '') }} {{ strtolower($delivery->destinationAddress->name ?? '') }}">
                 <div class="card-top">
                     <div>
-                        <div class="order-id">#ORD-{{ $delivery->id }}</div>
+                        <div class="order-id">{{ $delivery->delivered_on }}</div>
                         <div class="customer">{{ $delivery->customer->user->name ?? 'Unknown Customer' }}</div>
+                        <div class="route-addr">{{ $delivery->customer->user->mobile ?? 'Unknown Customer' }}</div>
                     </div>
                     <span class="pill pill-pending">Pending</span>
                 </div>
@@ -472,8 +503,9 @@
                  data-search="ord-{{ $delivery->id }} {{ strtolower($delivery->customer->user->name ?? '') }} {{ strtolower($delivery->departureAddress->name ?? '') }} {{ strtolower($delivery->destinationAddress->name ?? '') }}">
                 <div class="card-top">
                     <div>
-                        <div class="order-id">#ORD-{{ $delivery->id }}</div>
+                        <div class="order-id">{{ $delivery->delivered_on }}</div>
                         <div class="customer">{{ $delivery->customer->user->name ?? 'Unknown Customer' }}</div>
+                        <div class="route-addr">{{ $delivery->customer->user->mobile ?? 'Unknown Customer' }}</div>
                     </div>
                     <span class="pill pill-completed">Completed</span>
                 </div>
@@ -498,7 +530,7 @@
                     <div class="meta">
                         <span class="meta-item">{{ $delivery->distance ?? '0' }} km</span>
                         @if($delivery->delivered_on)
-                        <span class="meta-item">{{ $delivery->delivered_on->diffForHumans() }}</span>
+                        {{-- <span class="meta-item">{{ $delivery->delivered_on->diffForHumans() }}</span> --}}
                         @endif
                     </div>
                     <span class="amount">{{ number_format($delivery->fee, 0, ',', ' ') }} XAF</span>
@@ -530,8 +562,9 @@
                  data-search="ord-{{ $delivery->id }} {{ strtolower($delivery->customer->user->name ?? '') }} {{ strtolower($delivery->departureAddress->name ?? '') }} {{ strtolower($delivery->destinationAddress->name ?? '') }}">
                 <div class="card-top">
                     <div>
-                        <div class="order-id">#ORD-{{ $delivery->id }}</div>
+                        <div class="order-id">{{ $delivery->delivered_on }} </div>
                         <div class="customer">{{ $delivery->customer->user->name ?? 'Unknown Customer' }}</div>
+                        <div class="route-addr">{{ $delivery->customer->user->mobile ?? 'Unknown Customer' }}</div>
                     </div>
                     <span class="pill pill-canceled">Canceled</span>
                 </div>
@@ -574,7 +607,10 @@
 </div>
 
 <div class="toast" id="toast"></div>
-
+<div class="toast-popup" id="toastPopup">
+    <h4>🚚 New Delivery!</h4>
+    <p id="toastMessage">You have a new delivery assigned to you.</p>
+</div>
 <script>
     function filterStatus(status, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -605,6 +641,40 @@
         filterCards(this.value);
     });
 </script>
+<script>
+    // Get the deliveryman ID from Blade
+    const deliveryManId = {{ $deliveryMan->id ?? 0 }};
 
+    function checkForNewDelivery() {
+        if (deliveryManId === 0) return;
+
+        fetch('/check-delivery-notification/' + deliveryManId)
+            .then(res => res.json())
+            .then(data => {
+                if (data.hasNotification) {
+                    showToast(data.message);
+                }
+            })
+            .catch(err => console.warn('Notification check failed:', err));
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toastPopup');
+        const msg = document.getElementById('toastMessage');
+        msg.textContent = message;
+        toast.style.display = 'block';
+
+        // Auto hide after 6 seconds
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 6000);
+    }
+
+    // Check every 10 seconds
+    setInterval(checkForNewDelivery, 120000);
+
+    // Also check immediately on page load
+    checkForNewDelivery();
+</script>
 </body>
 </html>

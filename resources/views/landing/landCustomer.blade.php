@@ -32,7 +32,7 @@
 
         body {
             font-family: 'DM Sans', sans-serif;
-            background: var(--bg);
+            background: #ffffff;
             color: var(--text);
             min-height: 100vh;
         }
@@ -137,7 +137,7 @@
 
         .stat {
             background: var(--white);
-            border: 1px solid var(--border);
+            border: 1px solid #11182780;
             border-radius: 12px;
             padding: 18px 20px;
             display: flex; flex-direction: column; gap: 6px;
@@ -147,7 +147,7 @@
         .stat:hover { box-shadow: 0 6px 20px rgba(3,3,270,0.07); }
 
         .stat-label {
-            font-size: 12px; color: var(--muted);
+            font-size: 12px; color:black;
             text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500;
         }
 
@@ -249,7 +249,7 @@
         }
 
         .card {
-            background: var(--white);
+            background: #f5f5f659;
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 18px;
@@ -276,8 +276,8 @@
             margin-bottom: 14px;
         }
 
-        .order-id { font-size: 11px; color: var(--muted); margin-bottom: 3px; }
-        .customer { font-size: 15px; font-weight: 600; }
+        .order-id { font-size: 11px; color: black; margin-bottom: 10px; }
+        .customer { font-size: 20px; font-weight: 400; }
 
         .pill {
             font-size: 10px; font-weight: 600;
@@ -302,7 +302,7 @@
         .dot-to   { background: white; border: 2px solid var(--muted); }
 
         .route-line {
-            width: 1px; flex: 1;
+            width: 0px; flex: 1;
             background: repeating-linear-gradient(to bottom, var(--border) 0, var(--border) 4px, transparent 4px, transparent 8px);
             margin: 3px 0;
         }
@@ -319,8 +319,8 @@
         /* Delivery Man info (for customer view) */
         .delivery-man-info {
             margin: 12px 0;
-            padding: 10px;
-            background: var(--blue-light);
+            padding: 10px 0px;
+            /* background: var(--blue-light); */
             border-radius: 8px;
             font-size: 12px;
             display: flex;
@@ -347,6 +347,7 @@
 
         .delivery-man-name-small {
             font-weight: 600;
+            font-size:15px;
             color: var(--blue-dark);
         }
 
@@ -498,31 +499,31 @@
     </div>
 
     <!-- New Delivery Button -->
-    {{-- <a href="{{ route('delivery-list.createDel', ['customerId' => $customer->id]) }}" class="new-delivery-btn">
+    <a href="{{ route('delivery-list.createDel', ['customerId' => $customer->id]) }}" class="new-delivery-btn">
         + Request New Delivery
-    </a> --}}
+    </a>
 
     <!-- STATS CARDS -->
     <div class="stats">
         <div class="stat">
             <div class="stat-label">Total</div>
             <div class="stat-value blue">{{ $allDeliveries->count() }}</div>
-            <div class="stat-bar bar-blue"></div>
+            {{-- <div class="stat-bar bar-blue"></div> --}}
         </div>
         <div class="stat">
             <div class="stat-label">Pending</div>
             <div class="stat-value amber">{{ $pendingCount }}</div>
-            <div class="stat-bar bar-amber"></div>
+            {{-- <div class="stat-bar bar-amber"></div> --}}
         </div>
         <div class="stat">
             <div class="stat-label">completed</div>
             <div class="stat-value green">{{ $completedCount }}</div>
-            <div class="stat-bar bar-green"></div>
+            {{-- <div class="stat-bar bar-green"></div> --}}
         </div>
         <div class="stat">
             <div class="stat-label">Canceled</div>
             <div class="stat-value red">{{ $canceledCount }}</div>
-            <div class="stat-bar bar-red"></div>
+            {{-- <div class="stat-bar bar-red"></div> --}}
         </div>
     </div>
 
@@ -549,14 +550,16 @@
             </div>
         </div>
         <div class="cards" id="grid-pending">
+            {{-- <form method="POST" action="{{ route('custpage.upgrade', $delivery->id) }}" id="update-form"> --}}
+            
             @forelse($allDeliveries->where('status', 'pending') as $delivery)
             <div class="card card-pending" 
                  data-status="pending" 
                  data-search="ord-{{ $delivery->id }} {{ strtolower($delivery->departureAddress->name ?? '') }} {{ strtolower($delivery->destinationAddress->name ?? '') }}">
                 <div class="card-top">
-                    <div>
-                        <div class="order-id">#ORD-{{ $delivery->id }}</div>
-                        <div class="customer">Deliver to: {{ $delivery->destinationAddress->name ?? 'Unknown' }}</div>
+                   <div>
+                        <div class="order-id"> {{ $delivery->delivered_on }}</div>
+                        <div class="route-addr">Deliver to: <br><span class="customer">{{ $delivery->destinationAddress->name ?? 'Unknown' }}</span></div>
                     </div>
                     <span class="pill pill-pending">Pending</span>
                 </div>
@@ -564,7 +567,7 @@
                     <div class="route-dots">
                         <div class="dot dot-from"></div>
                         <div class="route-line"></div>
-                        <div class="dot dot-to"></div>
+                        {{-- <div class="dot dot-to"></div> --}}
                     </div>
                     <div class="route-info">
                         <div>
@@ -572,8 +575,8 @@
                             <div class="route-addr">{{ $delivery->departureAddress->name ?? 'Address not specified' }}</div>
                         </div>
                         <div>
-                            <div class="route-label">Deliver To</div>
-                            <div class="route-addr">{{ $delivery->destinationAddress->name ?? 'Address not specified' }}</div>
+                            {{-- <div class="route-label">Deliver To</div>
+                            <div class="route-addr">{{ $delivery->destinationAddress->name ?? 'Address not specified' }}</div> --}}
                         </div>
                     </div>
                 </div>
@@ -605,12 +608,13 @@
                 </div>
 
                 <div class="card-actions">
-                    <a href="#
-                    {{-- {{ route('customer.track.delivery', ['deliveryId' => $delivery->id]) }} --}}
-                     " class="btn-track">Track</a>
-                    <a href="
-                    {{-- {{ route('customer.contact.support', ['deliveryId' => $delivery->id]) }} --}}
-                     " class="btn-contact">Contact Support</a>
+                    <form method="POST" action="{{ route('custpage.upgrade', $delivery) }}" >
+
+                    @csrf
+                    @method('PATCH')
+                   
+                     <button class="btn-track"  onclick="return confirm('Mark this delivery as completed?')"> Mark as Completed </button>
+                  </form> 
                 </div>
             </div>
             @empty
@@ -639,26 +643,26 @@
                  data-search="ord-{{ $delivery->id }} {{ strtolower($delivery->departureAddress->name ?? '') }} {{ strtolower($delivery->destinationAddress->name ?? '') }}">
                 <div class="card-top">
                     <div>
-                        <div class="order-id">#ORD-{{ $delivery->id }}</div>
-                        <div class="customer">Delivered to: {{ $delivery->destinationAddress->name ?? 'Unknown' }}</div>
+                        <div class="order-id"> {{ $delivery->delivered_on }}</div>
+                        <div class="route-addr">Deliver to: <br><span class="customer">{{ $delivery->destinationAddress->name ?? 'Unknown' }}</span></div>
                     </div>
                     <span class="pill pill-completed">Completed</span>
                 </div>
                 <div class="route">
                     <div class="route-dots">
                         <div class="dot dot-from"></div>
-                        <div class="route-line"></div>
-                        <div class="dot dot-to"></div>
+                        {{-- <div class="route-line"></div>
+                        <div class="dot dot-to"></div> --}}
                     </div>
                     <div class="route-info">
                         <div>
                             <div class="route-label">Pickup From</div>
                             <div class="route-addr">{{ $delivery->departureAddress->name ?? 'Address not specified' }}</div>
                         </div>
-                        <div>
+                        {{-- <div>
                             <div class="route-label">Delivered To</div>
                             <div class="route-addr">{{ $delivery->destinationAddress->name ?? 'Address not specified' }}</div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -710,7 +714,7 @@
                  data-search="ord-{{ $delivery->id }} {{ strtolower($delivery->departureAddress->name ?? '') }} {{ strtolower($delivery->destinationAddress->name ?? '') }}">
                 <div class="card-top">
                     <div>
-                        <div class="order-id">#ORD-{{ $delivery->id }}</div>
+                        <div class="order-id"> {{ $delivery->delivered_on }}</div>
                         <div class="customer">Delivery to: {{ $delivery->destinationAddress->name ?? 'Unknown' }}</div>
                     </div>
                     <span class="pill pill-canceled">Canceled</span>

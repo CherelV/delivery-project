@@ -1,209 +1,153 @@
 @extends('dashboard.layout')
 
-@section('title', 'Delivery Man')
+@section('title', 'Delivery Men')
 
 @section('content')
+
+<div class="page-header">
+    <div>
         <h1>Delivery Men</h1>
-    <button class="add">
-       <a href="/delivery-man/create"> + Add DeliveryMan</a>
-    </button>
-    <table style="border-spacing:0px 2px; 
-            border-radius: 2px;
-            background-color:white;
-            padding:10px;
-            margin-left: auto;
-        margin-right: auto;">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>email</th>
-            <th>Address</th>
-            <th>Mobile</th>
-            <th>license Number</th>
-            <th>Number Plate</th>
-            <th>license Class</th>
-            <th>Vehicle Type</th>
-            <th>Status</th>
-            <th>Info</th>
-        </tr>
-            @foreach ( $delivery_men as $delivery_man )
-            <tr>
-                <td> {{ $delivery_man->id }} </td>
-                <td>{{ $delivery_man->user->name }}</td>
-                <td>{{ $delivery_man->user->email}}</td>
-                {{-- <td>{{$delivery_man->user->address }}</td> --}}
-                @if (filled($delivery_man->user->address))
-                    <td>{{ $delivery_man->user->address }}</td>
-                @else
-                    <td> null</td>
-                @endif
-                {{-- <td>{{ $delivery_man->user->mobile }}</td> --}}
-                @if (filled($delivery_man->user->mobile))
-                    <td>{{ $delivery_man->user->mobile }}</td>
-                @else
-                    <td> null</td>
-                @endif
-                <td>{{ $delivery_man->license_number }}</td>
-                <td>{{ $delivery_man->number_plate }}</td>
-                <td>{{ $delivery_man->license_class}}</td>
-                <td>{{ $delivery_man->vehicle_type }}</td>
-                <td><input type="checkbox" checked="true"> Active</td>
-                <td><button id="myBtn">...</button></td>
-                <td> <a href="/delivery-man/{{$delivery_man->id}}"> show </a></td>
-                
-            </tr>
-                
-
-
-      
-        @endforeach
-    
-    </table>
-
-        @foreach ( $delivery_men as $delivery_man )
-            {{-- <div class="modal-cover">
-    <div id="myModal" class="modal">
-    
-        <div  class="part">
-            <span  class="exit">&times;</span>
-            <p>{{ $delivery_man->id }}</p>
-            <p>status:<input type="checkbox" checked="true">Active</p>
-        </div>
-
-        <div>
-            <img class="image" src="{{ url('icons/successful-female-photographer-making-photos-modern-architecture (1).jpg') }}">
-        </div>
-
-        <p>Name: {{ $delivery_man->user->name }}</p>
-        <div  class="part">
-            <img class="images" src="{{ url('icons/542689.png') }}">
-            <img class="images" src="{{ url('icons/2956149.png') }}">
-        </div>
-
-
-        <p>more information</p>
-        <p>email: {{ $delivery_man->user->email }}</p>
-        <p>address: {{ $delivery_man->user->address }}</p>
-        <p>phone: {{ $delivery_man->user->mobile }}</p>
-        <p>vehicle: {{ $delivery_man->vehicle_type}}</p>
-        <p>licence number:{{ $delivery_man->license_number }}  </p>
-        <p>plate number: {{ $delivery_man->number_plate }}</p>
-        <p>last location : </p>
+        <p style="font-size:13px; color:var(--text-secondary); margin-top:2px;">Manage and approve delivery staff</p>
     </div>
+    <a href="/delivery-man/create" class="btn-add">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M7 1v12M1 7h12"/>
+        </svg>
+        Add Delivery Man
+    </a>
 </div>
-</tr> --}}
-        @endforeach
+
+@if(session('success'))
+    <div class="flash-success">{{ session('success') }}</div>
+@endif
+
+<div class="table-card">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>License No.</th>
+                <th>Plate</th>
+                <th>Class</th>
+                <th>Vehicle</th>
+                <th>Status</th>
+                <th>Actions</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($delivery_men as $delivery_man)
+            <tr>
+                <td style="font-family:'DM Mono',monospace; color:var(--text-secondary); font-size:12px;">{{ $delivery_man->id }}</td>
+                <td style="font-weight:500;">{{ $delivery_man->user->name }}</td>
+                <td style="color:var(--text-secondary);">{{ $delivery_man->user->email }}</td>
+                <td>
+                    @if(filled($delivery_man->user->mobile))
+                        {{ $delivery_man->user->mobile }}
+                    @else
+                        <span class="null-val">—</span>
+                    @endif
+                </td>
+                <td style="font-family:'DM Mono',monospace; font-size:12px;">{{ $delivery_man->license_number }}</td>
+                <td style="font-family:'DM Mono',monospace; font-size:12px;">{{ $delivery_man->number_plate }}</td>
+                <td>{{ $delivery_man->license_class }}</td>
+                <td>{{ $delivery_man->vehicle_type }}</td>
+
+                <td>
+                    @if($delivery_man->status === 'pending')
+                        <span class="badge badge--amber">Pending</span>
+                    @elseif($delivery_man->status === 'approved')
+                        <span class="badge badge--green">Approved</span>
+                    @elseif($delivery_man->status === 'rejected')
+                        <span class="badge badge--red">Rejected</span>
+                    @else
+                        <span class="null-val">—</span>
+                    @endif
+                </td>
+
+                <td>
+                    <div class="action-group">
+                        @if($delivery_man->status === 'pending')
+                            <form method="POST" action="{{ route('delivery-man.approve', $delivery_man) }}" style="display:inline;">
+                                @csrf @method('PATCH')
+                                <button type="submit" class="action-btn action-btn--approve">Approve</button>
+                            </form>
+                            <form method="POST" action="{{ route('delivery-man.reject', $delivery_man) }}" style="display:inline;">
+                                @csrf @method('PATCH')
+                                <button type="submit" class="action-btn action-btn--reject">Reject</button>
+                            </form>
+                        @elseif($delivery_man->status === 'rejected')
+                            <form method="POST" action="{{ route('delivery-man.approve', $delivery_man) }}" style="display:inline;">
+                                @csrf @method('PATCH')
+                                <button type="submit" class="action-btn action-btn--reapprove">Re-approve</button>
+                            </form>
+                        @else
+                            <span class="null-val">—</span>
+                        @endif
+                    </div>
+                </td>
+
+                <td>
+                    <a href="/delivery-man/{{ $delivery_man->id }}" class="link-show">View</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
 @endsection
 
 @section('style')
-    <style>
-    th{
-        border-bottom:2px rgba(100,100,100,0.4) solid;
+<style>
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
     }
-      th, td {
-             padding:10px;
-             text-align:left;
-            }
-        tr:hover{
-            background-color:rgba(98, 74, 9, 0.31);
-            border-radius:5px;
-            cursor:pointer;
-        }
-        #delivered{
-            color:rgba(10,200,150);
-        }
-        #canceled{
-           color:rgba(200,50,50);
-        }
-         #pending{
-            color:rgba(200,150,50);
-        }
-        .add{
-            font-weight:bold;
-            padding:6px 13px;
-            color:white;
-            background-color: rgba(3, 3, 270, 0.8);
-            border:2px  #2f2ff9 solid;
-             border-radius:5px;
-             position:absolute;
-             right:10px;
-             top:100px;
-        }
-        .add:hover{
-            font-weight:bold;
-            color: rgba(3, 3, 270, 0.8);
-            background-color:white;
-            border:2px  rgba(3, 3, 270, 0.8) solid;
-            cursor:pointer;
-        }
-           .image{
-            width:50px;
-            height:50px;
-            object-fit:cover;
-            border-radius: 100%;
-        }
-        .images{
-           width:20px;
-            height:20px;
-            object-fit:cover;
-            background-color:grey;
-             border-radius: 100%;
-            margin-left:
-        }
-        .exit{
-             float: right;
-            font-size: 20px;
-            padding:1px 6px;
-             border-radius:50%;
-             margin-top:0px
-        }
-        .exit:hover{
-             background-color:red;
-             color:white;
-             cursor:pointer; 
-        }
-        button{
-            padding: 2px 5px;
-            background-color:none;
-            border:none;
-        }
-        .modal{
-            display: none; 
-            position: fixed; 
-            z-index: 100;
-            right:25px;
-            top: 100px;
-            width: 200px; 
-            height:  420px; 
-            overflow: auto;
-            background-color:white;
-            padding:2px 2px 2px 10px;
-            border-radius:10px;
-        }
-        .modal-cover{
-           background-color:rgba(0,0,0,0.5); 
-           z-index: 100;
-           
-        }
-        input{
-            accent-color:green;
-        }
-          
-    </style>
+    .badge::before {
+        content: '';
+        width: 5px; height: 5px;
+        border-radius: 50%;
+        background: currentColor;
+        flex-shrink: 0;
+    }
+    .badge--green { background: #f0fdf4; color: #15803d; }
+    .badge--red   { background: #fef2f2; color: #b91c1c; }
+    .badge--amber { background: #fffbeb; color: #b45309; }
+
+    .action-group { display: flex; gap: 6px; align-items: center; }
+
+    .action-btn {
+        padding: 5px 11px;
+        font-size: 12px;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 600;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: opacity 150ms, transform 100ms;
+        white-space: nowrap;
+    }
+    .action-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    .action-btn--approve   { background: #15803d; color: white; }
+    .action-btn--reject    { background: #b91c1c; color: white; }
+    .action-btn--reapprove { background: #1d4ed8; color: white; }
+</style>
 @endsection
 
 @section('script')
-    <script>
-        var modal= document.getElementById("myModal");
-        var btn = document.getElementById("myBtn");
-        var span = document.getElementsByClassName("exit")[0];
-        btn.onclick = function() {modal.style.display = "block";}
-        span.onclick = function() {modal.style.display = "none";}
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                 modal.style.display = "none";
-            }
-        }
-
-    </script>
+<script>
+    // Modal removed — the "..." button modal relied on a single ID for multiple rows.
+    // Replace with per-row drawer or redirect to the show page via the View button.
+</script>
 @endsection

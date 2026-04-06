@@ -1,105 +1,221 @@
 @extends('dashboard.layout')
 
-@section('title', 'DeliveryList')
+@section('title', 'Deliveries')
 
 @section('content')
 
-            
-    <h1>Deliveries</h1>
-    <button class="add">
-        <a href="/delivery-list/create">+ Add Delivery</a>
-    </button>
-    <table style="
-            border-spacing:0px 2px;
-            border-radius: 2px;
-            background-color:white;
-            padding:10px;
-            margin-left: auto;
-        margin-right: auto;">
-        <tr>
-            <th>Id</th>
-            <th>Customer</th>
-            <th>DeliveryMan</th>
-            <th>Status</th>
-            <th>Fee</th>
-            <th>Departure Address</th>
-            <th>Destination Address</th>
-            <th>Delivered On</th>
-        </tr>
+<div class="page-header">
+    <div>
+        <h1>Deliveries</h1>
+        <p style="font-size:13px; color:var(--text-secondary); margin-top:2px;">Track all delivery assignments</p>
+    </div>
+    <a href="/delivery-list/create" class="btn-add">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M7 1v12M1 7h12"/>
+        </svg>
+        Add Delivery
+    </a>
+</div>
 
-        @foreach ( $deliveries as $delivery )
-        <a href="/">
+<div class="table-card">
+     <h2>Pending</h2>
+    <table>
+        <thead>
             <tr>
-                <td> {{ $delivery['id'] }} </td>
-                <td>{{ $delivery->customer->user->name}}</td>
-                <td>{{ $delivery->deliveryMan->user->name }}</td>
-                <td id="{{ $delivery['status'] }}">{{ $delivery['status'] }}</td>
-                <td>{{ $delivery['fee'] }}</td>
-
-                @if (filled($delivery->departureAddress))
-                    <td>{{ $delivery->departureAddress->name }}</td>
-                @else
-                    <td> null</td>
-                @endif
-
-                @if (filled($delivery->destinationAddress))
-                    <td>{{ $delivery->destinationAddress->name }}</td>
-                @else
-                    <td> null</td>
-                @endif
-
-                <td>{{ $delivery['delivered_on'] }}</td>
-                <td> <a href="/delivery-list/{{$delivery->id}}"> show </a></td>
-                
+                <th>N°</th>
+                <th>Customer</th>
+                <th>Delivery Man</th>
+                <th>Status</th>
+                <th>Fee</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Delivered On</th>
+                <th></th>
             </tr>
-        </a>
-        @endforeach
+        </thead>
+        <tbody>
+            @foreach ($deliveries as $delivery)
+             @if($delivery['status'] === 'pending')
+                        {{-- <span class="badge badge--green">Completed</span> --}}
+            <tr>
+                <td style="font-family:'DM Mono',monospace; color:var(--text-secondary); font-size:12px;">{{ $delivery['id'] }}</td>
+                <td style="font-weight:500;">{{ $delivery->customer->user->name }}</td>
+                <td>{{ $delivery->deliveryMan->user->name }}</td>
+                <td>
+                    @if($delivery['status'] === 'completed')
+                        <span class="badge badge--green">Completed</span>
+                    @elseif($delivery['status'] === 'canceled')
+                        <span class="badge badge--red">Canceled</span>
+                    @elseif($delivery['status'] === 'pending')
+                        <span class="badge badge--amber">Pending</span>
+                    @else
+                        <span class="badge">{{ $delivery['status'] }}</span>
+                    @endif
+                </td>
+                <td style="font-family:'DM Mono',monospace;">{{ $delivery['fee'] }}</td>
+                <td>
+                    @if(filled($delivery->departureAddress))
+                        {{ $delivery->departureAddress->name }}
+                    @else
+                        <span class="null-val">—</span>
+                    @endif
+                </td>
+                <td>
+                    @if(filled($delivery->destinationAddress))
+                        {{ $delivery->destinationAddress->name }}
+                    @else
+                        <span class="null-val">—</span>
+                    @endif
+                </td>
+                <td style="color:var(--text-secondary); white-space:nowrap;">{{ $delivery['delivered_on'] ?? '—' }}</td>
+                <td>
+                    <a href="/delivery-list/{{ $delivery->id }}" class="link-show">View</a>
+                </td>
+            </tr>
+             @endif
+            @endforeach
+        </table>
+            <h2>Completed</h2>
+                <table>
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Customer</th>
+                <th>Delivery Man</th>
+                <th>Status</th>
+                <th>Fee</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Delivered On</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+              @foreach ($deliveries as $delivery)
+             @if($delivery['status'] === 'completed')
+                        {{-- <span class="badge badge--green">Completed</span> --}}
+            <tr>
+                <td style="font-family:'DM Mono',monospace; color:var(--text-secondary); font-size:12px;">{{ $delivery['id'] }}</td>
+                <td style="font-weight:500;">{{ $delivery->customer->user->name }}</td>
+                <td>{{ $delivery->deliveryMan->user->name }}</td>
+                <td>
+                    @if($delivery['status'] === 'completed')
+                        <span class="badge badge--green">Completed</span>
+                    @elseif($delivery['status'] === 'canceled')
+                        <span class="badge badge--red">Canceled</span>
+                    @elseif($delivery['status'] === 'pending')
+                        <span class="badge badge--amber">Pending</span>
+                    @else
+                        <span class="badge">{{ $delivery['status'] }}</span>
+                    @endif
+                </td>
+                <td style="font-family:'DM Mono',monospace;">{{ $delivery['fee'] }}</td>
+                <td>
+                    @if(filled($delivery->departureAddress))
+                        {{ $delivery->departureAddress->name }}
+                    @else
+                        <span class="null-val">—</span>
+                    @endif
+                </td>
+                <td>
+                    @if(filled($delivery->destinationAddress))
+                        {{ $delivery->destinationAddress->name }}
+                    @else
+                        <span class="null-val">—</span>
+                    @endif
+                </td>
+                <td style="color:var(--text-secondary); white-space:nowrap;">{{ $delivery['delivered_on'] ?? '—' }}</td>
+                <td>
+                    <a href="/delivery-list/{{ $delivery->id }}" class="link-show">View</a>
+                </td>
+            </tr>
+             @endif
+            @endforeach
+               </table>
+            <h2>Canceled</h2>
+                <table>
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Customer</th>
+                <th>Delivery Man</th>
+                <th>Status</th>
+                <th>Fee</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Delivered On</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
 
+            @foreach ($deliveries as $delivery)
+             @if($delivery['status'] === 'canceled')
+                        {{-- <span class="badge badge--green">Completed</span> --}}
+            <tr>
+                <td style="font-family:'DM Mono',monospace; color:var(--text-secondary); font-size:12px;">{{ $delivery['id'] }}</td>
+                <td style="font-weight:500;">{{ $delivery->customer->user->name }}</td>
+                <td>{{ $delivery->deliveryMan->user->name }}</td>
+                <td>
+                    @if($delivery['status'] === 'completed')
+                        <span class="badge badge--green">Completed</span>
+                    @elseif($delivery['status'] === 'canceled')
+                        <span class="badge badge--red">Canceled</span>
+                    @elseif($delivery['status'] === 'pending')
+                        <span class="badge badge--amber">Pending</span>
+                    @else
+                        <span class="badge">{{ $delivery['status'] }}</span>
+                    @endif
+                </td>
+                <td style="font-family:'DM Mono',monospace;">{{ $delivery['fee'] }}</td>
+                <td>
+                    @if(filled($delivery->departureAddress))
+                        {{ $delivery->departureAddress->name }}
+                    @else
+                        <span class="null-val">—</span>
+                    @endif
+                </td>
+                <td>
+                    @if(filled($delivery->destinationAddress))
+                        {{ $delivery->destinationAddress->name }}
+                    @else
+                        <span class="null-val">—</span>
+                    @endif
+                </td>
+                <td style="color:var(--text-secondary); white-space:nowrap;">{{ $delivery['delivered_on'] ?? '—' }}</td>
+                <td>
+                    <a href="/delivery-list/{{ $delivery->id }}" class="link-show">View</a>
+                </td>
+            </tr>
+             @endif
+            @endforeach
+        </tbody>
     </table>
+</div>
 
 @endsection
 
 @section('style')
- <style>
-    th{
-        border-bottom:2px rgba(100,100,100,0.4) solid;
-        
+<style>
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
     }
-      th, td {
-             padding:10px;
-             text-align:left;
-            }
-        tr:hover{
-            background-color:rgba(98, 74, 9, 0.31);
-            border-radius:5px;
-            cursor:pointer;
-        }
-         #completed{
-            color:rgba(10,200,150);
-        }
-        #canceled{
-           color:rgba(200,50,50);
-        }
-         #pending{
-            color:rgba(200,150,50);
-        }
-        .add{
-            font-weight:bold;
-            padding:6px 13px;
-            color:white;
-            background-color: rgba(3, 3, 270, 0.8);
-            border:2px  #2f2ff9 solid;
-             border-radius:5px;
-             position:absolute;
-             right:80px;
-             top:100px;
-        }
-        .add:hover{
-            font-weight:bold;
-            color: rgba(3, 3, 270, 0.8);
-            background-color:white;
-            border:2px  rgba(3, 3, 270, 0.8) solid;
-            cursor:pointer;
-        }
-    </style>
+    .badge::before {
+        content: '';
+        width: 5px; height: 5px;
+        border-radius: 50%;
+        background: currentColor;
+        flex-shrink: 0;
+    }
+    .badge--green { background: #f0fdf4; color: #15803d; }
+    .badge--red   { background: #fef2f2; color: #b91c1c; }
+    .badge--amber { background: #fffbeb; color: #b45309; }
+</style>
 @endsection

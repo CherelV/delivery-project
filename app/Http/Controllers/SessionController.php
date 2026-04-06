@@ -47,6 +47,21 @@ class SessionController extends Controller
                
             //     print_r($user->deliveryMan);
             // exit;
+                if ($user->deliveryMan->status === 'pending') {
+                    Auth::logout();
+                    return back()->withErrors([
+                        'email' => 'Your account is pending admin approval. Please wait.',
+                    ]);
+                }
+
+                if ($user->deliveryMan->status === 'rejected') {
+                    Auth::logout();
+                    return back()->withErrors([
+                        'email' => 'Your account has been rejected. Please contact support.',
+                    ]);
+                }
+                
+                
                  $deliveryManId = $user->deliveryMan->id;
                  print_r($deliveryManId);
 
@@ -68,7 +83,7 @@ class SessionController extends Controller
         Auth::logout();
          request()->session()->invalidate(); // Invalidates the current session
         request()->session()->regenerateToken();
-        return redirect('/login');
+        return redirect()->route('landing.page.home');
     }
    //public function check()
    //{

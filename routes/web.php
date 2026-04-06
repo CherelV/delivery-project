@@ -68,6 +68,7 @@ Route::get('/deliveryCus/{customerId}/create', [DeliveryController::class, 'crea
 Route::post('/deliveryCus', [DeliveryController::class, 'storeDelivery'])->name('delivery-list.storeDel');
 
 Route::get('/custpage/{customerId}/create2', [DeliveryController::class, 'index2'])->name('custpage');
+Route::patch('/customer/delivery/{delivery}/complete', [DeliveryController::class, 'upgrade'])->name('custpage.upgrade');
 
 Route::get('/dManpage/{deliveryManId}/create3', [DeliveryController::class, 'index3'])->name('dManpage');
 
@@ -104,7 +105,7 @@ Route::middleware('auth')->group(function(){
 
 // Public routes - accessible to everyone
 Route::get('/', [LandingController::class, 'home'])->name('landing.page.home');
-Route::get('/landingPage', [LandingController::class, 'home'])->name('landing.page.home');
+//Route::get('/landingPage', [LandingController::class, 'home'])->name('landing.page.home');
 Route::get('/landingPage/schedule', [LandingController::class, 'schedule'])->name('landing.page.schedule');
 
 // Delivery Authentication Routes
@@ -134,3 +135,25 @@ Route::middleware(['deliveryMan.auth'])->prefix('deliveryMan')->name('deliveryMa
 //     Route::post('/schedule', [ScheduleController::class, 'store'])->name('schedule.store');
 //     // Add more customer routes here
 // });
+Route::get('/check-delivery-notification/{deliveryManId}', function ($deliveryManId) {
+    $key = 'new_delivery_for_' . $deliveryManId;
+    $data = cache()->get($key);
+
+    if ($data) {
+        cache()->forget($key); // delete it after reading so it shows only once
+        return response()->json(['hasNotification' => true, 'message' => $data['message']]);
+    }
+
+    return response()->json(['hasNotification' => false]);
+});
+
+// Pending page (no auth needed)
+Route::get('/deliveryMan/pending', [DeliveryManController::class, 'pending'])
+     ->name('deliveryman.pending');
+
+// Admin approve / reject
+Route::patch('/delivery-man/{delivery_man}/approve', [DeliveryManController::class, 'approve'])
+     ->name('delivery-man.approve');
+
+Route::patch('/delivery-man/{delivery_man}/reject', [DeliveryManController::class, 'reject'])
+     ->name('delivery-man.reject');

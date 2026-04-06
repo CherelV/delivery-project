@@ -36,6 +36,7 @@ class DeliveryManController extends Controller
          'license_class'=>['required'],
          'vehicle_type'=>['required'],
          'number_plate'=>['required'],
+        
       ]);
       
       $attributes['user_id'] = Auth::user()->id;
@@ -47,8 +48,10 @@ class DeliveryManController extends Controller
          'license_class' => $attributes['license_class'],
          'vehicle_type' => $attributes['vehicle_type'],
          'number_plate' => $attributes['number_plate'],
+         'status'         => 'pending',
       ]);
-       return redirect('/dashboard/delivery-man');
+      // return redirect()->route('landing.page.home');
+      return redirect()->route('deliveryman.pending');
    }
 
    public function show(DeliveryMan $delivery_man)
@@ -106,7 +109,21 @@ class DeliveryManController extends Controller
       return redirect('/dashboard/delivery-man');
 
    }
- 
+   public function pending()
+   {
+      return view('deliveryman.pending');
+   }
+   public function approve(DeliveryMan $delivery_man)
+   {
+      $delivery_man->update(['status' => 'approved']);
+      return redirect('/dashboard/delivery-man')->with('success', $delivery_man->user->name . ' has been approved.');
+   }
+
+   public function reject(DeliveryMan $delivery_man)
+   {
+      $delivery_man->update(['status' => 'rejected']);
+      return redirect('/dashboard/delivery-man')->with('success', $delivery_man->user->name . ' has been rejected.');
+   }
    
 }
 

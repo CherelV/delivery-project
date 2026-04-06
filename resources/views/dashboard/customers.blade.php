@@ -2,82 +2,60 @@
 
 @section('title', 'Customers')
 
-@section('style')
-    <style>
-        th{
-        border-bottom:2px rgba(100,100,100,0.4) solid;
-    }
-      th, td {
-             padding:10px;
-             text-align:left;
-            }
-        tr:hover{
-            background-color:rgba(98, 74, 9, 0.31);
-            border-radius:5px;
-            cursor:pointer;
-        }
-       
-         .add{
-            font-weight:bold;
-            padding:6px 13px;
-            color:white;
-            background-color: rgba(3, 3, 270, 0.8);
-            border:2px  #2f2ff9 solid;
-             border-radius:5px;
-            position:absolute;
-             right:70px;
-             top:100px;
-        }
-        .add:hover{
-            font-weight:bold;
-            color: rgba(3, 3, 270, 0.8);
-            background-color:white;
-            border:2px  rgba(3, 3, 270, 0.8) solid;
-            cursor:pointer;
-        }
-    </style>
-@endsection
-
 @section('content')
-    <h1>Customers</h1>
-    <button class="add">
-       <a href="/customers/create"> + Add Customer</a>
-    </button>
 
-    <table style="border-spacing:0px 2px;
-            border-radius: 2px;
-            background-color:white;
-            padding:10px;
-            margin-left: auto;
-        margin-right: auto;">
-        <tr>
-            <th>Id</th>
-            <th>name</th>
-            <th>email</th>
-            <th>Address</th>
-            <th>Mobile</th>
-        </tr>
-        @foreach ( $customers as $customer )
+<div class="page-header">
+    <div>
+        <h1>Customers</h1>
+        <p style="font-size:13px; color:var(--text-secondary); margin-top:2px;">Manage all registered customers</p>
+    </div>
+    <a href="/customers/create" class="btn-add">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M7 1v12M1 7h12"/>
+        </svg>
+        Add Customer
+    </a>
+</div>
+
+<div class="table-card">
+    <table>
+        <thead>
             <tr>
-                <td> {{ $customer->id }} </td>
-                <td>{{ $customer->user->name }}</td>
-                <td>{{ $customer->user->email }}</td>
-                @if (filled($customer->user->address))
-                    <td>{{ $customer->user->address }}</td>
-                @else
-                    <td> null</td>
-                @endif
-                {{-- <td>{{ $customer->user->address }}</td> --}}
-                @if (filled($customer->user->mobile))
-                    <td>{{ $customer->user->mobile }}</td>
-                @else
-                    <td> null</td>
-                @endif
-                {{-- <td>{{$customer->user->mobile }}</td> --}}
-                
-                <td> <a href="/customers/{{$customer->id}}"> show </a></td>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Mobile</th>
+                <th></th>
             </tr>
-        @endforeach
-       
+        </thead>
+        <tbody>
+            @foreach ($customers as $customer)
+            <tr>
+                <td style="font-family:'DM Mono',monospace; color:var(--text-secondary); font-size:12px;">{{ $customer->id }}</td>
+                <td style="font-weight:500;">{{ $customer->user->name }}</td>
+                <td style="color:var(--text-secondary);">{{ $customer->user->email }}</td>
+                <td>
+                    @if(filled($customer->user->address))
+                        {{ $customer->user->address }}
+                    @else
+                        <span class="null-val">—</span>
+                    @endif
+                </td>
+                <td>
+                    @if(filled($customer->user->mobile))
+                        {{ $customer->user->mobile }}
+                    @else
+                        <span class="null-val">—</span>
+                    @endif
+                </td>
+                <td>
+                    <a href="/customers/{{ $customer->id }}" class="link-show">View</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
+</div>
+
 @endsection

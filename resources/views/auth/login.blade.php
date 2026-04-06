@@ -198,8 +198,8 @@
 
         /* ── Card ── */
         .login-card {
-            display: flex;
-            width: 960px;
+            /* display: flex; */
+            width: 500px;
             min-height: 600px;
             border-radius: 20px;
             overflow: hidden;
@@ -211,7 +211,7 @@
         .form-panel {
             flex: 0 0 55%;
             background: #fff;
-            padding: 56px 52px 48px;
+            padding: 25px 30px 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -221,7 +221,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 48px;
+            margin-bottom: 18px;
         }
         .brand-icon {
             width: 34px;
@@ -289,7 +289,7 @@
         }
         .field input:focus,
         .field input:not(:placeholder-shown) {
-            border-color: var(--blue);
+            /* border-color: var(--blue); */
         }
         .field input:focus ~ label,
         .field input:not(:placeholder-shown) ~ label {
@@ -390,11 +390,13 @@
             cursor: pointer;
             transition: border-color 0.2s, box-shadow 0.2s;
             text-decoration: none;
+            
         }
         .social-btn:hover {
             border-color: var(--blue);
             box-shadow: 0 2px 12px rgba(59,111,232,0.12);
         }
+        .custom-popup{position:fixed;top:20px;left:50%;transform:translateX(-50%);width:300px;background:#fff;color:#0066ff;text-align:center;font-size:14px;padding:18px 12px;border-radius:20px;box-shadow:0 4px 10px rgba(0, 102, 255, 0.28),0 0 0 1px rgba(0,102,255,.2);z-index:9999;font-family:system-ui,sans-serif;font-weight:500;pointer-events:all;}
         .social-btn i { font-size: 20px; }
         .social-btn .fa-facebook-f { color: #1877F2; }
         .social-btn .fa-google     { color: #EA4335; }
@@ -455,57 +457,15 @@
                 radial-gradient(circle at 25% 75%, rgba(120,180,255,0.2) 0%, transparent 35%);
         } */
         /* Floating orbs */
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(1px);
-            animation: floatOrb 8s ease-in-out infinite;
-        }
-        .orb-1 {
-            width: 12px; height: 12px;
-            background: rgba(255,255,255,0.7);
-            top: 20%; left: 55%;
-            animation-delay: 0s;
-        }
-        .orb-2 {
-            width: 8px; height: 8px;
-            background: rgba(255,255,255,0.5);
-            top: 45%; left: 75%;
-            animation-delay: 2s;
-        }
-        .orb-3 {
-            width: 6px; height: 6px;
-            background: rgba(255,255,255,0.6);
-            top: 65%; left: 40%;
-            animation-delay: 4s;
-        }
-        .orb-4 {
-            width: 10px; height: 10px;
-            background: rgba(255,255,255,0.4);
-            top: 30%; left: 30%;
-            animation-delay: 1s;
-        }
-        .orb-5 {
-            width: 5px; height: 5px;
-            background: rgba(255,255,255,0.8);
-            top: 75%; left: 65%;
-            animation-delay: 3s;
-        }
+        
 
-        @keyframes blobShift {
-            0%   { transform: translate(0, 0) rotate(0deg); }
-            50%  { transform: translate(3%, 2%) rotate(3deg); }
-            100% { transform: translate(-2%, 4%) rotate(-2deg); }
-        }
-        @keyframes floatOrb {
-            0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
-            50%       { transform: translateY(-18px) scale(1.2); opacity: 1; }
-        }
+        
+      
 
         /* ── Responsive ── */
         @media (max-width: 768px) {
             .login-card { flex-direction: column; width: 95%; min-height: auto; }
-            .visual-panel { height: 200px; }
+            /* .visual-panel { height: 200px; } */
             .form-panel { padding: 36px 28px; }
         }
     </style>
@@ -518,7 +478,7 @@
         <div>
             <!-- Brand -->
             <div class="brand">
-                <div class="brand-icon"><i class="fas fa-bolt"></i></div>
+                {{-- <div class="brand-icon"><i class="fas fa-bolt"></i></div> --}}
                 <span class="brand-name">PopDelivery</span>
             </div>
 
@@ -580,13 +540,13 @@
 
             <!-- Social -->
             <div class="social-row">
-                <a href="#" class="social-btn" aria-label="Facebook">
+                <a href="#" class="social-btn" id="facebook"aria-label="Facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="#" class="social-btn" aria-label="Google">
+                <a href="#" class="social-btn" id="google" aria-label="Google">
                     <i class="fab fa-google"></i>
                 </a>
-                <a href="#" class="social-btn" aria-label="Apple">
+                <a href="#" class="social-btn" id="apple" aria-label="Apple">
                     <i class="fab fa-apple"></i>
                 </a>
             </div>
@@ -595,18 +555,13 @@
         <!-- Footer -->
         <p class="form-footer">Don't have an account? <a href="{{ route('register.create') }}">Sign up</a></p>
     </div>
-
-    <!-- ── Right: Visual ── -->
-    <div class="visual-panel">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <div class="orb orb-4"></div>
-        <div class="orb orb-5"></div>
-    </div>
+   
 
 </div>
-
+<?php $pw = "1234567";
+   $hash = Hash:: make($pw);
+   //echo "hash: ". $hash ;
+   ?>
 <script>
 function togglePwd() {
     const input = document.getElementById('password');
@@ -619,6 +574,39 @@ function togglePwd() {
         icon.classList.replace('fa-eye-slash', 'fa-eye');
     }
 }
+</script>
+<script>
+    document.getElementById('facebook').addEventListener('click',function(e){
+        e.preventDefault();
+        document.querySelector('.custom-popup')?.remove();
+        let p=document.createElement('div');
+        p.className='custom-popup';
+        p.innerHTML='<span style="position:absolute;bottom:20px;right:10px;cursor:pointer;font-size:13px;font-weight:600;" onclick="this.parentElement.remove()">✕</span>Sorry, this feature is not yet available.';
+        document.body.appendChild(p);
+        setTimeout(()=>p.remove(),3000);
+    });
+</script>
+<script>
+    document.getElementById('google').addEventListener('click',function(e){
+        e.preventDefault();
+        document.querySelector('.custom-popup')?.remove();
+        let p=document.createElement('div');
+        p.className='custom-popup';
+        p.innerHTML='<span style="position:absolute;bottom:20px;right:10px;cursor:pointer;font-size:13px;font-weight:600;" onclick="this.parentElement.remove()">✕</span>Sorry, this feature is not yet available.';
+        document.body.appendChild(p);
+        setTimeout(()=>p.remove(),3000);
+    });
+</script>
+<script>
+    document.getElementById('apple').addEventListener('click',function(e){
+        e.preventDefault();
+        document.querySelector('.custom-popup')?.remove();
+        let p=document.createElement('div');
+        p.className='custom-popup';
+        p.innerHTML='<span style="position:absolute;bottom:20px;right:10px;cursor:pointer;font-size:13px;font-weight:600;" onclick="this.parentElement.remove()">✕</span>Sorry, this feature is not yet available.';
+        document.body.appendChild(p);
+        setTimeout(()=>p.remove(),3000);
+    });
 </script>
 </body>
 </html>
