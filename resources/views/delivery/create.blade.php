@@ -65,7 +65,7 @@
             overflow: hidden;
         }
         .card-header::after {
-            content: '📦';
+            content: '';
             position: absolute;
             right: 1.75rem;
             top: 50%;
@@ -165,6 +165,7 @@
             outline: none; border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(249,115,22,0.13);
         }
+        .field input[readonly] { background: #f8fafc; color: var(--muted); cursor: default; }
 
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
@@ -312,16 +313,19 @@
             {{-- ═══════════════ ROUTE ═══════════════ --}}
             <p class="section-label">Route</p>
 
-            {{-- Departure address (selectable) --}}
-            <div class="field">
-                <label>Departure Address</label>
-                <select name="departure_address_id" class="ch" required>
-                    <option value="">— Choose Departure Address —</option>
-                    @foreach ($quarters as $quarter)
-                        <option value="{{ $quarter->id }}">{{ $quarter->name }}</option>
-                    @endforeach
-                </select>
-                @error('departure_address_id') <p class="error-msg">{{ $message }}</p> @enderror
+            {{-- Departure address (fixed) --}}
+            @php
+                $departure = $quarters->firstWhere('name', 'Akwa Carrefour Soudanaise')
+                          ?? $quarters->firstWhere('name', 'Akwa - Carrefour Soudanaise');
+            @endphp
+            <input type="hidden" name="departure_address_id" value="{{ $departure->id ?? '' }}">
+
+            <div class="departure-strip">
+                <span class="ds-icon"></span>
+                <div>
+                    <div class="ds-label">Departure (fixed)</div>
+                    <div class="ds-name">{{ $departure->name ?? 'Akwa — Carrefour Soudanaise' }}</div>
+                </div>
             </div>
 
             {{-- Destination --}}
@@ -345,30 +349,23 @@
                 @error('item_description') <p class="error-msg">{{ $message }}</p> @enderror
             </div>
 
+            <input type="hidden" name="status" value="pending">
+
             <div class="form-row">
-                <div class="field">
-                    <label>Status</label>
-                    <select name="status" required>
-                        <option value="">— Select —</option>
-                        <option value="pending">Pending</option>
-                    </select>
-                    @error('status') <p class="error-msg">{{ $message }}</p> @enderror
-                </div>
                 <div class="field">
                     <label>Fee (XAF)</label>
                     <div class="fee-wrapper" id="fee-box">
-                        <input id="fee" name="fee" type="text" placeholder="Auto-calculated">
+                        <input id="fee" name="fee" type="text" placeholder="Auto-calculated" readonly>
                         <span class="currency-tag">XAF</span>
                     </div>
                     <div class="fee-hint" id="fee-hint"></div>
                     @error('fee') <p class="error-msg">{{ $message }}</p> @enderror
                 </div>
-            </div>
-
-            <div class="field">
-                <label>Delivered On</label>
-                <input name="delivered_on" type="datetime-local">
-                @error('delivered_on') <p class="error-msg">{{ $message }}</p> @enderror
+                <div class="field">
+                    <label>Date</label>
+                    <input name="delivered_on" type="date" value="{{ now()->format('Y-m-d') }}">
+                    @error('delivered_on') <p class="error-msg">{{ $message }}</p> @enderror
+                </div>
             </div>
 
             <button type="submit" class="btn btn-primary">Save Delivery</button>
@@ -713,12 +710,16 @@ $(document).ready(function () {
             const fare = calcFare(data.km, data.mn);
             feeInput.val(fare);
             feeBox.addClass('has-value');
-            hint.text('~' + data.km.toFixed(1) + ' km · ~' + data.mn + ' min').addClass('visible');
+            hint.text('~' + data.km.toFixed(1) + ' km · ~' + data.mn + ' min from Akwa Soudanaise').addClass('visible');
         } else {
             feeInput.val('');
             feeBox.removeClass('has-value');
             hint.text('Quarter not in fare table — enter manually').addClass('visible');
         }
+    });
+
+    $('#destination_address_id').on('chosen:updated', function () {
+        $(this).trigger('change');
     });
 
     /* ── Toggle delivery man selector ── */

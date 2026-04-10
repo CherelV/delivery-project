@@ -65,7 +65,7 @@
             overflow: hidden;
         }
         .card-header::after {
-            content: '✏️';
+            content: '';
             position: absolute;
             right: 1.75rem; top: 50%;
             transform: translateY(-50%);
@@ -290,7 +290,7 @@
             <div class="field">
                 <label>Delivered On</label>
                 <input name="delivered_on" type="datetime-local"
-                       value="{{ \Carbon\Carbon::parse($delivery->delivered_on)->format('Y-m-d\TH:i') }}" required>
+                       value="{{ now()->format('Y-m-d\TH:i') }}" required>
                 @error('delivered_on') <p class="error-msg">{{ $message }}</p> @enderror
             </div>
 

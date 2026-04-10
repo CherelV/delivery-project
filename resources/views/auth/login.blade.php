@@ -479,13 +479,13 @@
             <!-- Brand -->
             <div class="brand">
                 {{-- <div class="brand-icon"><i class="fas fa-bolt"></i></div> --}}
-                <span class="brand-name">PopDelivery</span>
+                <span class="brand-name"><span style="color:blue;">Pop</span>Delivery</span>
             </div>
 
             <!-- Header -->
             <div class="form-header">
                 <p class="subtitle">Welcome back</p>
-                <h1>Login to PopDelivery</h1>
+                <h1>Login to <span style="color:blue;">Pop</span>Delivery</h1>
             </div>
 
             <!-- Form -->
@@ -529,7 +529,7 @@
                         <a href="#">Customer</a>
                         <a href="#">DeliveryMan</a>
                     </div> --}}
-                    <a href="#" class="forgot">Forgot password?</a>
+                    <a href="#" class="forgot" id="forgot">Forgot password?</a>
                 </div>
 
                 <button type="submit" class="btn-submit">Login</button>
@@ -599,6 +599,15 @@ function togglePwd() {
 </script>
 <script>
     document.getElementById('apple').addEventListener('click',function(e){
+        e.preventDefault();
+        document.querySelector('.custom-popup')?.remove();
+        let p=document.createElement('div');
+        p.className='custom-popup';
+        p.innerHTML='<span style="position:absolute;bottom:20px;right:10px;cursor:pointer;font-size:13px;font-weight:600;" onclick="this.parentElement.remove()">✕</span>Sorry, this feature is not yet available.';
+        document.body.appendChild(p);
+        setTimeout(()=>p.remove(),3000);
+    });
+      document.getElementById('forgot').addEventListener('click',function(e){
         e.preventDefault();
         document.querySelector('.custom-popup')?.remove();
         let p=document.createElement('div');

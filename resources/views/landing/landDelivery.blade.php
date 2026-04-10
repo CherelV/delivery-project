@@ -344,19 +344,22 @@
             .toast-popup {
         display: none;
         position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background: #1e1e2f;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #0c0c36;
         color: white;
         padding: 16px 22px;
         border-radius: 14px;
-        border-left: 5px solid #4caf50;
+        /* border-left: 5px solid #4caf50; */
         font-family: sans-serif;
         font-size: 15px;
         z-index: 9999;
         box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        animation: slideIn 0.4s ease;
+        animation: slideInTop 0.4s ease;
         max-width: 300px;
+         width: max-content;
+         text-align: center;
     }
     .toast-popup h4 {
         margin: 0 0 6px;
@@ -608,7 +611,7 @@
 
 <div class="toast" id="toast"></div>
 <div class="toast-popup" id="toastPopup">
-    <h4>🚚 New Delivery!</h4>
+    <h4> New Delivery!</h4>
     <p id="toastMessage">You have a new delivery assigned to you.</p>
 </div>
 <script>

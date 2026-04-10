@@ -24,24 +24,27 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        $attributes = $request->validate([
-            'name' =>['required'],
-            'email'=> ['required', 'email'],
-            'address'=>['required'],
-            'password'=>['required', Password::min(6)],
-            'mobile'=>['required'],
-            'national_id'=>['required'],
-        ]);
-        
+         $attributes = $request->validate([
+        'name'        => ['required'],
+        'email'       => ['required', 'email'],
+        'address'     => ['required'],
+        'password'    => ['required', Password::min(6)],
+        'mobile'      => ['required'],
+        'national_id' => ['required'],
+    ]);
 
-        $attributes['user_id'] = Auth::user()->id;
+    // Don't pass user_id to User::create — users table has no such column
+    $user = User::create([
+        'name'        => $attributes['name'],
+        'email'       => $attributes['email'],
+        'address'     => $attributes['address'],
+        'password'    => bcrypt($attributes['password']),
+        'mobile'      => $attributes['mobile'],
+        'national_id' => $attributes['national_id'],
+    ]);
 
-        $user = User::create($attributes);
-        Customer::create([
-            'user_id'=>$user->id,
-        ]);
-        
-        return redirect('/dashboard/customers');
+    Customer::create(['user_id' => $user->id]);
+        return redirect('/dashboard/customers')->with('added',  'Customer has been Added.');
     }
 
     public function show(Customer $customer)
@@ -55,34 +58,36 @@ class CustomerController extends Controller
     }
 
     public function update(Request $request,Customer $customer)
-    {
-       $attributes = $request->validate([
-            'name' =>['required'],
-            'email'=> ['required', 'email'],
-            'address'=>['required'],
-            'password'=>['required', Password::min(6)],
-            'mobile'=>['required'],
-            'national_id'=>['required'],
-        ]); 
-        $attributes['user_id'] = Auth::user()->id;
+  {
+    $attributes = $request->validate([
+        'name'        => ['required'],
+        'email'       => ['required', 'email'],
+        'address'     => ['required'],
+        'password'    => ['nullable', Password::min(6)],  // nullable on edit
+        'mobile'      => ['required'],
+        'national_id' => ['required'],
+    ]);
 
-        $customer->user->update([
-         'name' => $attributes['name'],
-         'email' => $attributes['email'],
-         'address' => $attributes['address'],
-         'password' => $attributes['password'],
-         'mobile' => $attributes['mobile'],
-         'national_id' => $attributes['national_id'],
-      
-      ]);
+    $customer->user->update([
+        'name'        => $attributes['name'],
+        'email'       => $attributes['email'],
+        'address'     => $attributes['address'],
+        'mobile'      => $attributes['mobile'],
+        'national_id' => $attributes['national_id'],
+    ]);
 
-      return redirect('/dashboard/customers');
+    // Only update password if a new one was actually provided
+    if (!empty($attributes['password'])) {
+        $customer->user->update(['password' => bcrypt($attributes['password'])]);
+    }
+
+      return redirect('/dashboard/customers')->with('success',  'Customer has been Updated.');
 
     }
      public function destroy(Customer $customer)
     {
        $customer->delete();
-       return redirect('/dashboard/customers');
+       return redirect('/dashboard/customers')->with('delete',  'Customer has been deleted.');
     }
     public function makeDelivery()
    {

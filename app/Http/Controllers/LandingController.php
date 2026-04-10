@@ -22,8 +22,24 @@ class LandingController extends Controller
 
      public function home(): View
     {
+        $totalDeliveryMen = DeliveryMan::count();
+        $totalCustomers = Customer::count();
+        $totalDeliveries = Delivery::count();
+
+        $pendingDeliveries = Delivery::where('status', 'pending')->count();
+        $completedDeliveries = Delivery::where('status', 'completed')->count();
+        $canceledDeliveries = Delivery::where('status', 'canceled')->count();
+        $suc = $completedDeliveries / $totalDeliveries * 100;
+        return view('landing.landingPage', compact(
+            'totalDeliveryMen',
+            'totalCustomers',
+            'totalDeliveries',
+            'pendingDeliveries',
+            'completedDeliveries',
+            'canceledDeliveries',
+            'suc'
+        ));
         
-        return view('landing.landingPage');
     }
      public function schedule(): View
     {

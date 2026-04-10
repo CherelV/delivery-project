@@ -193,7 +193,14 @@
             .header-mobile-menu .btn-outline,
             .header-mobile-menu .btn-solid { display: block; text-align: center; margin-top: 4px; }
         }
-
+        @media (min-width: 901px) {
+            .header-mobile-menu {
+                display: none !important;
+            }
+            .hamburger {
+                display: none !important;
+            }
+        }
         /* ============================================================
            HERO
         ============================================================ */
@@ -202,6 +209,7 @@
             min-height: 620px;
             background-image: url('/images/new.jpg');
             background-size: cover;
+            background-repeat: no-repeat;
             background-position: center;
             display: flex;
             align-items: center;
@@ -1015,7 +1023,7 @@
             <a href="{{ route('customer.schedule') }}" class="btn-solid">Schedule</a>
         @else
             <a href="{{ route('customer.login') }}" class="btn-outline">Log In</a>
-            <a href="{{ route('login') }}" class="btn-solid">Get Started</a>
+            <a href="{{ route('register.create') }}" class="btn-solid">Get Started</a>
         @endif
     </div>
 
@@ -1023,14 +1031,13 @@
     <!-- ==================== HERO ==================== -->
     <section class="hero">
         <div class="hero-content">
-            {{-- <span class="hero-eyebrow">🚀 Fast · Reliable · Trackable</span> --}}
             <h1 class="hero-title">
                 Experience<br>More Than<br><em>Just a Delivery</em>
             </h1>
             <p class="hero-sub">Get it delivered in no time — straight to your door, with full live tracking every step of the way.</p>
             <div class="hero-btns">
-                <a href="{{ route('login') }}" class="hero-btn-primary">COMMANDER UNE LIVRAISON</a>
-                <a href="{{ route('login') }}" class="hero-btn-ghost">POSTULER EN TANT QUE LIVREUR</a>
+                {{-- <a href="{{ route('login') }}" class="hero-btn-primary">COMMANDER UNE LIVRAISON</a> --}}
+                <a href="{{ route('register.create') }}" class="hero-btn-ghost">APPLY AS A DELIVERY DRIVER</a>
             </div>
         </div>
     </section>
@@ -1073,20 +1080,21 @@
             <h2 class="counter-headline">Impact your bottom line with same-day delivery</h2>
             <div class="counter-grid">
                 <div class="counter-item">
-                    <div class="counter-num"><span data-count="186">0</span></div>
+                    <div class="counter-num"><span data-count="{{ $completedDeliveries }}">0</span></div>
                     <div class="counter-label">Deliveries Completed</div>
                 </div>
                 <div class="counter-item">
-                    <div class="counter-num"><span data-count="127">0</span></div>
+                    <div class="counter-num"><span data-count="{{ $totalCustomers }}">0</span></div>
                     <div class="counter-label">Clients Satisfied</div>
                 </div>
                 <div class="counter-item">
-                    <div class="counter-num"><span data-count="91">0</span>%</div>
+                    
+                    <div class="counter-num"><span data-count="{{ $suc }}">0</span>%</div>
                     <div class="counter-label">Success Rate</div>
                 </div>
                 <div class="counter-item">
-                    <div class="counter-num"><span data-count="2">0</span>+</div>
-                    <div class="counter-label">Years Experience</div>
+                    <div class="counter-num"><span data-count="4">0</span>+</div>
+                    <div class="counter-label">months Experience</div>
                 </div>
             </div>
         </div>
@@ -1120,7 +1128,7 @@
                 <div class="bento-body">
                     <span class="bento-tag">For Drivers</span>
                     <h3 class="bento-title">Pick Your Trip</h3>
-                    <p class="bento-desc">Take control of your trips. Select the deliveries that work for you and earn on your own schedule — no pressure, just freedom.</p>
+                    <p class="bento-desc">Take control of your trips.<br> Earn on your own schedule — no pressure, just freedom.</p>
                 </div>
                 <div class="bento-img-wrap">
                     <img class="bento-img" src="{{ url('/images/young-adult-traveling-using-sustainable-mobility-removebg-preview.png') }}" alt="Pick Your Trip">
@@ -1144,7 +1152,7 @@
                     <p class="bento-desc">Deliver on your own terms. Choose your orders and set your schedule for ultimate flexibility and control.</p>
                 </div>
                 <div class="bento-img-wrap">
-                    <img class="bento-img" src="{{ url('/images/african-american-female-deliverer-carrying-packages-talking-mobile-phone-city-removebg-preview (1)-pica.png') }}" alt="Delivery Driver">
+                    <img class="bento-img" src="{{ url('/images/yellowdM.png') }}" alt="Delivery Driver">
                 </div>
             </div>
 
@@ -1184,7 +1192,7 @@
             <div class="driver-visual">
                 <div class="driver-blob"></div>
                 <img class="driver-img"
-                     src="{{ url('/images/pleased-young-afro-american-delivery-man-holding-cardboard-box-clipboard-isolated-orange-wall-with-copy-space.png') }}"
+                     src="{{ url('/images/delivery-man-holding-packages3.png') }}"
                      alt="Delivery Driver">
 
                 <div class="driver-badge badge-top">
@@ -1198,7 +1206,7 @@
                 <div class="driver-badge badge-bottom">
                     <img src="{{ url('/images/icons8-truck-100.png') }}" alt="Truck" style="width:30px;height:30px;object-fit:contain;">
                     <div class="driver-badge-text">
-                        <span>+186</span>
+                        <span>{{ $completedDeliveries }}</span>
                         Deliveries done
                     </div>
                 </div>
@@ -1256,52 +1264,52 @@
             <div class="faq-list">
 
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        How do I create an account?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Click the "Get Started" button in the header and fill out the registration form. It only takes a few minutes, and you'll be ready to schedule your first delivery right away.
-                        </div>
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How do I get a delivery?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Make sure you are a Glotelho customer and have placed an order online. Click the "Log In" button in the header and fill out the form. You will be taken to your customer page, where you can see all your deliveries.
                     </div>
                 </div>
+            </div>
 
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        How can I track my order?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            You can track your order in real time on the "My Orders" page. Once your driver is on the way, you'll see their live location on the map alongside a dynamic ETA.
-                        </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How much does a delivery cost?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Pricing is calculated based on distance and package size with no hidden fees. You'll always see the exact price for eachd delivery made.
                     </div>
                 </div>
+            </div>
 
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        How much does a delivery cost?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Pricing is calculated based on distance and package size with no hidden fees. You'll always see the exact price before confirming your order.
-                        </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How are drivers notified about new deliveries?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        You will receive a real‑time notification on your delivery page when a new delivery is assigned to you.
                     </div>
                 </div>
+            </div>
 
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        How do I apply as a delivery driver?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Click "POSTULER EN TANT QUE LIVREUR" on the homepage, complete the registration with your personal info and vehicle details, and our team will review and approve your application within 24–48 hours.
-                        </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How do I apply as a delivery driver?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Click "APPLY AS A DELIVERY DRIVER" on the homepage, complete the registration with your personal info and vehicle details, and our team will review and approve your application within 24–48 hours.
                     </div>
                 </div>
+            </div>
 
             </div>
         </div>
@@ -1315,11 +1323,11 @@
             <div class="slide-track">
                 @for($i = 0; $i < 2; $i++)
                     @foreach([
-                        ["Really happy with PopDelivery overall. Just a few hiccups here and there on delayed shipments, but nothing that ruined the experience.", "Anonymous", "Réexpédition", "13/05/2025"],
-                        ["The live tracking is phenomenal. I always know exactly where my package is — it feels like magic!", "Sophie K.", "Livraison express", "20/04/2025"],
-                        ["Applied as a driver and got approved super fast. The flexible schedule is a game changer for me.", "Jean-Pierre M.", "Driver", "02/05/2025"],
-                        ["No hidden fees, fast delivery, friendly driver. Can't ask for more. Will use again!", "Aminata T.", "Standard", "28/04/2025"],
-                    ] as $review)
+                        ["Applied as a driver and got approved super fast. The flexible schedule is a game changer for me.", "Daniel Mdeffo", "Driver", "02/12/2025"],
+                        ["The app notifies me instantly when a new delivery is created,it saves me so much time. That's how I stay fast and reliable.", "Elombo fredy", "Driver", "09/01/2026"],
+                        ["Fastest delivery I've ever experienced. Ordered in the morning, got it before lunch. Quality packaging, item in perfect condition. Highly recommend!", " darlie Foncham", "Customer", "02/02/2026"],
+                        ["The commission per delivery is fair — a good amount for the distance and time. I can plan my day and earn decently. No complaints.", "peter clement", "Driver", "22/02/2026"],
+                    ] as $review )
                     <div class="review-card">
                         <div class="review-stars">★★★★★</div>
                         <p class="review-text">"{{ $review[0] }}"</p>
@@ -1343,7 +1351,10 @@
                     <h2>Ready to get started?</h2>
                     <p>Join over 1,000+ businesses growing with us.</p>
                 </div>
-                <button class="footer-cta-btn">Contact Us Now</button>
+                <a href="https://glotelho.cm/contactez-nous?srsltid=AfmBOophJvvpXkjQ0uVF7uQpcoF3bD3xcwCoaTP00yTSuFvxLnf5nFGb" target="_blank"  rel="noopener noreferrer"  >
+                    <button class="footer-cta-btn">Contact Us Now</button>
+                </a>
+                
             </div>
         </div>
 
@@ -1356,19 +1367,19 @@
                 <!-- Social icons with SVGs -->
                 <div class="social-row">
                     <!-- Facebook -->
-                    <a href="#" class="social-btn" aria-label="Facebook">
+                    <a href="https://www.facebook.com/glotelho/"  target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                         </svg>
                     </a>
                     <!-- Instagram -->
-                    <a href="#" class="social-btn" aria-label="Instagram">
+                    <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.instagram.com%2Fglotelho_cm%3Ffbclid%3DIwZXh0bgNhZW0CMTAAYnJpZBEwUmQ5M0ZXeEJxcWl6dlVaWHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR6cjbUQ6zVzHqEnjWp4W5ImIcTQlucJ0z2QtjmIxN8T9BZZ0UZx8MUQ60BLmg_aem_wPJQyysS37WtNcHvvxJhuA&h=AT5XNIT89YJTzM4oTVeaXs9peit8yGbVNevp1Ahnury7-v3nBzV_yopTCpV5Wtq-FsOA-UxK83suCG57jtbH5vCuptjlYLYMregxbXyRlbkbWjC59503omH0cT3s40pOhVhP" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
                     </a>
                     <!-- Twitter / X -->
-                    <a href="#" class="social-btn" aria-label="Twitter">
+                    <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fx.com%2Fglotelho_cm%3Ffbclid%3DIwZXh0bgNhZW0CMTAAYnJpZBEwUmQ5M0ZXeEJxcWl6dlVaWHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR7KyykHVHb5EbXmqAVk6pIMFE0HeJUxWxUK66bXk34OoAaYEBTCxt9ine6VIg_aem_laxBHACpgRuwcfmjLroGlQ&h=AT6xquo2v3yfLXB6jqPpuFIaWkmQelVdx6amU_yFAFpHo-3YD3mjkbHTENLpyyUJVZjjVYSn2TQD98AmaQsUudD-CahtlMiUCeOwC9yV2KVyatBj5RygWC43uFLe-xCYot3q" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Twitter">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                         </svg>
@@ -1388,7 +1399,7 @@
             <!-- Company -->
             <div>
                 <p class="footer-col-title">Company</p>
-                <a href="#" class="footer-col-link">About Us</a>
+                <a href="https://glotelho.cm/a-propos-de-nous?srsltid=AfmBOoqFhWe3sG1cSXSRc8gHDJxRGROuchiKUsVFfSeoTE5mHxQ3raUt" target="_blank" rel="noopener noreferrer" class="footer-col-link">About Us</a>
                 <a href="#" class="footer-col-link">Careers</a>
                 <a href="#" class="footer-col-link">News</a>
                 <a href="#" class="footer-col-link">Contact</a>
@@ -1476,14 +1487,14 @@
                     current = Math.min(current + step, target);
                     span.textContent = current;
                     if (current >= target) clearInterval(timer);
-                }, 16);
+                }, 50);
             });
         }
 
         window.addEventListener('scroll', () => {
             if (!countersTriggered) {
                 const rect = counterSection.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 100) {
+                if (rect.top < window.innerHeight - 180) {
                     countersTriggered = true;
                     runCounters();
                 }

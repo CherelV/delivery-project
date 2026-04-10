@@ -499,9 +499,9 @@
     </div>
 
     <!-- New Delivery Button -->
-    <a href="{{ route('delivery-list.createDel', ['customerId' => $customer->id]) }}" class="new-delivery-btn">
+    {{-- <a href="{{ route('delivery-list.createDel', ['customerId' => $customer->id]) }}" class="new-delivery-btn">
         + Request New Delivery
-    </a>
+    </a> --}}
 
     <!-- STATS CARDS -->
     <div class="stats">

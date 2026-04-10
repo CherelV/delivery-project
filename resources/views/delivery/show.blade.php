@@ -209,7 +209,7 @@
     <div class="card-header">
         <div class="card-header-top">
             <div>
-                <h1>Delivery #{{ $delivery['id'] }}</h1>
+                <h1>Delivery {{ $delivery['id'] }}</h1>
                 <p>{{ $delivery['delivered_on'] }}</p>
             </div>
             <span class="status-badge badge--{{ $delivery['status'] }}">{{ $delivery['status'] }}</span>

@@ -14,7 +14,17 @@ class DeliveryController extends Controller
 {
     public function index()
    {
-       $deliveries = Delivery::with(['customer', 'deliveryMan','quarter','departureAddress','destinationAddress'])->get();
+       $deliveries = Delivery::with(['customer', 'deliveryMan','quarter','departureAddress','destinationAddress'])
+        ->orderByRaw("
+        CASE 
+            WHEN status = 'pending' THEN 1
+            WHEN status = 'completed' THEN 2
+            WHEN status = 'canceled' THEN 3
+            ELSE 4
+        END
+    ")
+    ->orderBy('created_at', 'desc')  // most recent first within each group
+    ->get();
        //simplePaginate(3);
        
         return view('dashboard.deliveryList',[
@@ -57,7 +67,7 @@ class DeliveryController extends Controller
     ], now()->addMinutes(10)); // stays for 2 minutes
 
     
-   return redirect('/dashboard/delivery-list');
+   return redirect('/dashboard/delivery-list')->with('added',  'Delivery has been added.');
     }
 
     public function show(Delivery $delivery)
@@ -104,13 +114,13 @@ class DeliveryController extends Controller
         'delivery_id' => $delivery->id,
     ], now()->addMinutes(10));
         //dd($request->all());
-         return redirect('/dashboard/delivery-list');
+         return redirect('/dashboard/delivery-list')->with('success',  'Delivery has been Updated.');
         //return view('dashboard.deliveryList');
     }
     public function destroy(Delivery $delivery)
     {
         $delivery->delete();
-        return redirect(('/dashboard/delivery-list'));
+        return redirect(('/dashboard/delivery-list'))->with('delete',  'Delivery has been deleted.');
     }
 
 

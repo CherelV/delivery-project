@@ -17,8 +17,8 @@
             --sidebar-text: #140032;
             --sidebar-text-active: #ffffff;
             --sidebar-accent: #3b6fea;
-            --sidebar-hover-bg: rgba(19, 71, 193, 0.12);
-            --sidebar-active-bg: rgba(59,111,234,0.18);
+            --sidebar-hover-bg: rgba(19, 71, 193, 0.78);
+            --sidebar-active-bg: rgb(43, 28, 241);
             --card-bg: #ffffff;
             --border: #e4e7ed;
             --text-primary: #111827;
@@ -73,7 +73,7 @@
             flex-shrink: 0;
         }
         .sidebar-brand-icon img { width: 20px; height: 20px; object-fit: contain; filter: brightness(10); }
-        .sidebar-brand-name { font-size: 13.5px; font-weight: 600; color: #fff; line-height: 1.25; }
+        .sidebar-brand-name { font-size: 13.5px; font-weight: 600; color: #000000; line-height: 1.25; }
         .sidebar-brand-tagline { font-size: 10px; color: var(--sidebar-text); font-weight: 400; }
 
         .sidebar-section-label {
@@ -100,7 +100,7 @@
             border-radius: 6px;
             position: relative;
         }
-        .nav-item:hover { background: var(--sidebar-hover-bg); color: #fff; }
+        .nav-item:hover { background: var(--sidebar-hover-bg); color: #ffffffd3; }
         .nav-item.active {
             background: var(--sidebar-active-bg);
             color: var(--sidebar-text-active);
@@ -283,6 +283,12 @@
             font-size: 13px;
             font-weight: 500;
         }
+        .header-brand img {
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
 
         @yield('extra-styles')
     </style>
@@ -294,11 +300,11 @@
     <!-- SIDEBAR -->
     <nav class="sidebar">
         <div class="sidebar-brand">
-            <div class="sidebar-brand-icon">
-                <img src="{{ url('icons/bik4.png') }}" alt="logo">
+            <div class="header-brand">
+                <img src="{{ url('/icons/bik4.png') }}" alt="PopDelivery logo">
             </div>
             <div>
-                <div class="sidebar-brand-name">PopDelivery</div>
+                <div class="sidebar-brand-name"><span style="color:blue;">Pop</span>Delivery</div>
                 <div class="sidebar-brand-tagline">You tap, we deliver</div>
             </div>
         </div>

@@ -39,18 +39,25 @@ class DeliveryManController extends Controller
         
       ]);
       
-      $attributes['user_id'] = Auth::user()->id;
+      //$attributes['user_id'] = Auth::user()->id;
 
-      $user = User::create($attributes);
-      DeliveryMan::create([
-         'user_id'=>$user->id,
-         'license_number' => $attributes['license_number'],
-         'license_class' => $attributes['license_class'],
-         'vehicle_type' => $attributes['vehicle_type'],
-         'number_plate' => $attributes['number_plate'],
-         'status'         => 'pending',
+      $user = User::create([
+            'name'        => $attributes['name'],
+            'email'       => $attributes['email'],
+            'address'     => $attributes['address'],
+            'password'    => bcrypt($attributes['password']),
+            'mobile'      => $attributes['mobile'],
+            'national_id' => $attributes['national_id'],
       ]);
       // return redirect()->route('landing.page.home');
+       DeliveryMan::create([
+            'user_id'        => $user->id,
+            'license_number' => $attributes['license_number'],
+            'license_class'  => $attributes['license_class'],
+            'vehicle_type'   => $attributes['vehicle_type'],
+            'number_plate'   => $attributes['number_plate'],
+            'status'         => 'pending',
+        ]);
       return redirect()->route('deliveryman.pending');
    }
 
@@ -61,6 +68,8 @@ class DeliveryManController extends Controller
 
    public function edit(DeliveryMan $delivery_man)
    {
+      // dd($delivery_man->user->national_id);
+      //$delivery_man->load('user');
       return view('deliveryman.edit', [ 'delivery_man'=> $delivery_man]);
    }
 
@@ -80,7 +89,7 @@ class DeliveryManController extends Controller
          'number_plate'=>['required'],
       ]);
    
-      $attributes['user_id'] = Auth::user()->id;
+    //  $attributes['user_id'] = Auth::user()->id;
 
       $delivery_man->user->update([
          'name' => $attributes['name'],
@@ -89,24 +98,27 @@ class DeliveryManController extends Controller
          'password' => $attributes['password'],
          'mobile' => $attributes['mobile'],
          'national_id' => $attributes['national_id'],
-      
-      ]);
-      $delivery_man->update([
          
-         'license_number' => $attributes['license_number'],
-         'license_class' => $attributes['license_class'],
-         'vehicle_type' => $attributes['vehicle_type'],
-         'number_plate' => $attributes['number_plate'],
-         
-     
       ]);
-       return redirect('/dashboard/delivery-man');
+
+      if (!empty($attributes['password'])) {
+        $delivery_man->user->update(['password' => bcrypt($attributes['password'])]);
+    }
+
+         $delivery_man->update([
+            'license_number' => $attributes['license_number'],
+            'license_class'  => $attributes['license_class'],
+            'vehicle_type'   => $attributes['vehicle_type'],
+            'number_plate'   => $attributes['number_plate'],
+        ]);
+        
+       return redirect('/dashboard/delivery-man')->with('success',  'DeliveryMan has been Updated.');
    }
 
    public function destroy(DeliveryMan $delivery_man)
    {
       $delivery_man->delete();
-      return redirect('/dashboard/delivery-man');
+      return redirect('/dashboard/delivery-man')->with('delete',  'DeliveryMan has been deleted.');
 
    }
    public function pending()

@@ -17,6 +17,15 @@
     </a>
 </div>
 
+@if(session('added'))
+    <div class="flash flash--blue">{{ session('added') }}</div>
+@endif
+@if(session('success'))
+    <div class="flash flash--green">{{ session('success') }}</div>
+@endif
+@if(session('delete'))
+    <div class="flash flash--red">{{ session('delete') }}</div>
+@endif
 <div class="table-card">
     <table>
         <thead>
@@ -57,5 +66,28 @@
         </tbody>
     </table>
 </div>
-
+<style>
+        .flash {
+            padding: 10px 16px;
+            border-radius: 7px;
+            font-size: 13.5px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        .flash--green {
+            background: #f0fdf4;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+        }
+        .flash--blue {
+            background: #f0f0fd;
+            color: #211580;
+            border: 1px solid #bbbbf7;
+        }
+        .flash--red {
+            background: #ffefef;
+            color: #d81d1d;
+            border: 1px solid #febfbf;
+        }
+</style>
 @endsection
