@@ -239,7 +239,7 @@
             </div>
             <div class="info-item">
                 <div class="ii-label">National ID</div>
-                <div class="ii-value mono">
+                <div class="ii-value">
                     @if(filled($delivery_man->user->national_id))
                         {{ $delivery_man->user->national_id }}
                     @else
@@ -259,7 +259,7 @@
             </div>
             <div class="info-item full-width">
                 <div class="ii-label">License Number</div>
-                <div class="ii-value mono">{{ $delivery_man->license_number ?? '—' }}</div>
+                <div class="ii-value">{{ $delivery_man->license_number ?? '—' }}</div>
             </div>
         </div>
 

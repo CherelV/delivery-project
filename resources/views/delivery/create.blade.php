@@ -282,7 +282,7 @@
                     <div>
                         <div class="chip-label">Driver</div>
                         <div class="chip-name" id="driver-name">{{ $selectedDeliveryMan->user->name }}</div>
-                        <div class="chip-sub">{{ $selectedDeliveryMan->pending_count ?? 0 }} pending deliveries</div>
+                        {{-- <div class="chip-sub">{{ $selectedDeliveryMan->pending_count ?? 0 }} pending deliveries</div> --}}
                     </div>
                     <button type="button" class="change-driver-btn" id="toggle-driver-btn">✎ Change</button>
                 </div>

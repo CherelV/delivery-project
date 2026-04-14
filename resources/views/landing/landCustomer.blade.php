@@ -604,7 +604,7 @@
                         <span class="meta-item">{{ $delivery->distance ?? '0' }} km</span>
                         <span class="meta-item">{{ $delivery->created_at->diffForHumans() }}</span>
                     </div>
-                    <span class="amount">{{ number_format($delivery->fee, 0, ',', ' ') }} XAF</span>
+                    {{-- <span class="amount">{{ number_format($delivery->fee, 0, ',', ' ') }} XAF</span> --}}
                 </div>
 
                 <div class="card-actions">
@@ -685,7 +685,7 @@
                          {{-- <span class="meta-item">{{ $delivery->delivered_on->diffForHumans() }}</span> --}}
                         @endif
                     </div>
-                    <span class="amount">{{ number_format($delivery->fee, 0, ',', ' ') }} XAF</span>
+                    {{-- <span class="amount">{{ number_format($delivery->fee, 0, ',', ' ') }} XAF</span> --}}
                 </div>
             </div>
             @empty
@@ -744,7 +744,7 @@
                     <span class="amount struck">{{ number_format($delivery->fee, 0, ',', ' ') }} XAF</span>
                 </div>
                 <div class="card-actions">
-                    <a href="{{ route('customer.reorder', ['deliveryId' => $delivery->id]) }}" class="btn-reorder">Reorder</a>
+                    {{-- <a href="{{ route('customer.reorder', ['deliveryId' => $delivery->id]) }}" class="btn-reorder">Reorder</a> --}}
                 </div>
             </div>
             @empty
