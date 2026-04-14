@@ -70,7 +70,7 @@
     <div class="doc-list">
         @php
         $documents = [
-            ['name' => 'National ID card or passport',    'hint' => 'Valid, non-expired — original + 1 photocopy'],
+            ['name' => 'National ID card or  passport',    'hint' => 'Valid, non-expired — original + 1 photocopy'],
             ['name' => "Driver's license",                'hint' => 'Category A or B — valid and non-expired'],
             ['name' => 'Vehicle registration (grey card)','hint' => 'For motorcycle or vehicle used for deliveries'],
             ['name' => 'Vehicle insurance certificate',   'hint' => 'Current and valid insurance for your delivery vehicle'],
